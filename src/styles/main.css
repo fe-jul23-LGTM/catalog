@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-mont text-[14px] font-medium resp-[line-height/21/14] text-secondary;
+  }
+
+  body {
+    @apply dark:bg-dark-black;
+  }
+
+  .container-lg {
+    @apply px-4 sm:px-6 lg:mx-auto lg:max-w-[1200px];
+  }
+}
+
+@layer components {
+  .title-1 {
+    @apply resp-[font/48/32] resp-[line-height/41/32] font-extrabold resp-[w-max/400/400] sm:resp-[font/48/48] sm:max-w-full text-primary tracking-[-0.32px] sm:tracking-[-0.48px] dark:text-white;
+  }
+
+  .title-2 {
+    @apply resp-[font/48/22] resp-[line-height/30/22] font-extrabold sm:resp-[font/32/32] sm:resp-[line-height/41/32] text-primary tracking-[-0.32px] dark:text-white;
+  }
+
+  .title-3 {
+    @apply resp-[font/22/20] font-bold sm:resp-[font/22/22] sm:resp-[line-height/30/22] text-primary dark:text-white;
+  }
+
+  .title-4 {
+    @apply resp-[font/20/16] font-bold sm:resp-[font/20/20] text-primary dark:text-white;
+  }
+
+  .title-5 {
+    @apply font-semibold text-primary dark:text-white;
+  }
+
+  .button-add {
+    @apply resp-[py/16/16] w-full bg-primary text-white font-bold border-[1px] border-[transparent] hover:shadow-btn transition ease-in-out duration-500 dark:text-dark-white dark:hover:bg-dark-accent-hover dark:shadow-none dark:bg-dark-accent;
+  }
+
+  .button-select {
+    @apply resp-[py/7/7] resp-[px/8/8] text-primary border-[2px] border-icons dark:text-dark-white dark:bg-dark-black;
+  }
+}
+
+@layer utilities {
+  .shadow-btn {
+    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+  }
+}
