@@ -1,0 +1,42 @@
+.burger {
+  position: relative;
+  width: 16px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.burgerTop {
+  top: 0;
+}
+
+.burgerMid {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.burgerBot {
+  bottom: 0;
+}
+
+.burgerTop,
+.burgerMid,
+.burgerBot {
+  @apply bg-primary dark:bg-[white];
+  height: 3px;
+  border-radius: 5px;
+  width: 100%;
+  transition:
+    width 0.5s ease 0s,
+    background-color 0.5s ease 0s;
+
+  position: absolute;
+  left: 0;
+}
+
+.burger:hover .burgerTop {
+  width: 85%;
+}
+
+.burger:hover .burgerBot {
+  width: 60%;
+}
