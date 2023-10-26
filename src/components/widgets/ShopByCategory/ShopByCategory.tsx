@@ -29,14 +29,14 @@ const categories = [
 
 export const ShopByCategory: FC = () => {
   return (
-    <div className="max-w-screen-lg">
+    <div className="container-lg resp-[py/40/40]">
       <h2 className="title-2 resp-[mb/24/24]">Shop by category</h2>
       <div className="resp-[grid-col/0,3/1] grid-cols-1 sm:grid-cols-3 justify-items-center gap-x-4">
         {categories.map(category => (
           <a href={`/catalog${category.link}`} key={category.title}>
             <img
               src={category.image}
-              alt=""
+              alt={category.title}
               className="resp-[width/368/288] resp-[mb/24/24] transform hover:scale-105 transition-transform duration-300"
             />
             <h4 className="title-4 resp-[mb/4/4]">{category.title}</h4>
