@@ -39,6 +39,12 @@
       "~styles/*": [
         "./styles/*"
       ],
+      "~routers": [
+        "./routers"
+      ],
+      "~routers/*": [
+        "./routers/*"
+      ],
     }
   },
   "include": [

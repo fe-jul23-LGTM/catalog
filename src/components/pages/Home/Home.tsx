@@ -1,9 +1,12 @@
 import { FC } from 'react';
+import { ShopByCategory } from '~components/widgets/ShopByCategory';
 
 type THomeProps = object;
 
-export const Home:FC<THomeProps> = () => {
+export const Home: FC<THomeProps> = () => {
   return (
-    <div></div>
+    <div>
+      <ShopByCategory />
+    </div>
   );
 };
