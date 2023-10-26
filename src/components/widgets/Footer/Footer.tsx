@@ -32,7 +32,7 @@ export const Footer: FC<TFooterProps> = () => {
 
         <div className="text-center">
           <ScrollLink
-            to="top"
+            to="scrollTo"
             smooth={true}
             duration={500}
             onClick={handleBackToTop}
