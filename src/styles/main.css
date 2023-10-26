@@ -4,11 +4,11 @@
 
 @layer base {
   html {
-    @apply font-mont text-[14px] font-medium resp-[line-height/21/14] text-secondary;
+    @apply font-mont text-[14px] font-medium resp-[line-height/21/14] text-secondary min-h-full;
   }
 
   body {
-    @apply dark:bg-dark-black;
+    @apply dark:bg-dark-black min-h-full;
   }
 
   .container-lg {
