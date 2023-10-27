@@ -3,6 +3,7 @@ import { FC } from 'react';
 import phones from './assets/phones.jpg';
 import tablets from './assets/tablets.jpg';
 import accessories from './assets/accessories.jpg';
+import { Link } from 'react-router-dom';
 
 const categories = [
   {
@@ -33,7 +34,7 @@ export const ShopByCategory: FC = () => {
       <h2 className="title-2 resp-[mb/24/24]">Shop by category</h2>
       <div className="resp-[grid-col/0,3/1] grid-cols-1 sm:grid-cols-3 justify-items-center gap-x-4">
         {categories.map(category => (
-          <a href={`/catalog${category.link}`} key={category.title}>
+          <Link to={`/catalog${category.link}`} key={category.title}>
             <img
               src={category.image}
               alt=""
@@ -41,7 +42,7 @@ export const ShopByCategory: FC = () => {
             />
             <h4 className="title-4 resp-[mb/4/4]">{category.title}</h4>
             <p className="resp-[mb/80/32]">{`${category.itemsCount} models`}</p>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
