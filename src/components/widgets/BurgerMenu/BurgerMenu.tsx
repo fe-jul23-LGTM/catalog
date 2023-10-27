@@ -5,35 +5,22 @@ import classNames from 'classnames';
 
 import { NavBar } from '~components/UI/navBar';
 
+import { getStyleLink } from './helper';
+
 import styles from './BurgerMenu.module.css';
 
 type TBurgerMenuProps = {
   isMenuOpen: boolean;
 };
 
-type TGetStyleLink = (
-  isActive: boolean,
-  position: string,
-  isNegative?: string,
-) => string;
-
 export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
   const asideStyle = classNames(
-    `fixed w-screen h-[calc(100vh-47px)] transition-transform duration-500 top-[47px] bg-white dark:bg-dark-black z-10 pt-[32px] ${styles.after} ${styles.before} dark:after:bg-dark-elements dark:before:bg-dark-elements`,
+    `fixed w-screen h-[calc(100vh-47px)] sm:hidden transition-transform duration-500 top-[47px] bg-white dark:bg-dark-black z-10 pt-[32px] ${styles.after} ${styles.before} dark:after:bg-dark-elements dark:before:bg-dark-elements`,
     {
       'translate-x-full': !isMenuOpen,
       'translate-x-0': isMenuOpen,
     },
   );
-
-  const getStyleLink: TGetStyleLink = (isActive, position, isNegative = '') =>
-    classNames(
-      `relative ${position} ${isNegative}translate-x-2/4 py-[24px] px-[24px]`,
-      {
-        'after:bg-primary after:top-[0] after:left-[50%] after:-translate-x-2/4 after:w-[100px] after:h-[2px] after:absolute':
-          isActive,
-      },
-    );
 
   return (
     <aside className={asideStyle}>
@@ -43,7 +30,7 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
         <NavLink
           to="/favourites"
           className={activeLink =>
-            getStyleLink(activeLink.isActive, 'left-[25%]', '-')
+            getStyleLink(activeLink.isActive, 'left-[25%]', '-translate-x-2/4')
           }
         >
           <svg
@@ -63,7 +50,9 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
         </NavLink>
         <NavLink
           to="/cart"
-          className={activeLink => getStyleLink(activeLink.isActive, 'right-[25%]')}
+          className={activeLink =>
+            getStyleLink(activeLink.isActive, 'right-[25%]', 'translate-x-2/4')
+          }
         >
           <svg
             width="16"
