@@ -32,11 +32,3 @@
   position: absolute;
   left: 0;
 }
-
-.burger:hover .burgerTop {
-  width: 85%;
-}
-
-.burger:hover .burgerBot {
-  width: 60%;
-}

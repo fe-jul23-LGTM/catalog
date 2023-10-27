@@ -34,6 +34,9 @@ export default {
       'dark-black': '#0F1121',
     },
     extend: {
+      transitionProperty: {
+        transform: 'transform',
+      },
       screens: {
         tablet: '640px',
         tabletMax: '1020px',

@@ -1,0 +1,7 @@
+.after {
+  @apply after:absolute after:bg-elements after:h-[2px] after:w-[100%] after:bottom-[64px] dark:after:bg-dark-elements;
+}
+
+.before {
+  @apply before:absolute before:bg-elements before:h-[64px] before:w-[1.5px] before:bottom-[0] before:left-[50%] before:translate-x-2/4;
+}

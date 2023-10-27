@@ -65,7 +65,7 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
           onSubmit={handleSubmit}
           className="flex flex-col resp-[gap/16/16] color-elements
           border border-elements dark:border-dark-elements
-          resp-[px/16/16] resp-[py/16/16] resp-[width/368/368]"
+          resp-[px/16/16] resp-[py/16/16] resp-[w-max/368/368]"
         >
           <div
             className="text-center relative after:absolute after:h-px
