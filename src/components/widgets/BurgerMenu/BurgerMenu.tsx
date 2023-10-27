@@ -5,13 +5,17 @@ import classNames from 'classnames';
 
 import { NavBar } from '~components/UI/navBar';
 
-import { getStyleLink } from './helper';
-
 import styles from './BurgerMenu.module.css';
 
 type TBurgerMenuProps = {
   isMenuOpen: boolean;
 };
+
+type TGetStyleLink = (
+  isActive: boolean,
+  position: string,
+  isNegative?: string,
+) => string;
 
 export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
   const asideStyle = classNames(
@@ -22,6 +26,15 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
     },
   );
 
+  const getStyleLink: TGetStyleLink = (isActive, position, isNegative = '') =>
+    classNames(
+      `relative ${position} ${isNegative}translate-x-2/4 py-[24px] px-[24px]`,
+      {
+        'after:bg-primary after:top-[0] after:left-[50%] after:-translate-x-2/4 after:w-[100px] after:h-[2px] after:absolute':
+          isActive,
+      },
+    );
+
   return (
     <aside className={asideStyle}>
       <NavBar isBurger={true} />
@@ -29,7 +42,9 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
       <div className="w-[100vw] h-[64px] absolute bottom-0 flex items-center justify-between gap-[144px]">
         <NavLink
           to="/favourites"
-          className={activeLink => getStyleLink(activeLink.isActive, 'left', '-')}
+          className={activeLink =>
+            getStyleLink(activeLink.isActive, 'left-[25%]', '-')
+          }
         >
           <svg
             width="16"
@@ -48,7 +63,7 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
         </NavLink>
         <NavLink
           to="/cart"
-          className={activeLink => getStyleLink(activeLink.isActive, 'right')}
+          className={activeLink => getStyleLink(activeLink.isActive, 'right-[25%]')}
         >
           <svg
             width="16"
