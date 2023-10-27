@@ -1,26 +1,13 @@
-/* eslint-disable max-len */
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { Logo } from '~components/UI/logo';
 import { NavBar } from '~components/UI/navBar';
 import { Burger } from './UI/burger';
-
 import { favoriteNCartStyles } from './helper';
-
 import style from './Header.module.css';
-
-type THeaderProps = object;
+import { THeaderProps } from './Header';
 
 export const Header: FC<THeaderProps> = () => {
-  const handleTitleChange = (title: string) => {
-    if (title) {
-      document.title = 'Nice Gadgets | ' + title;
-    } else if (!title) {
-      document.title = 'Nice Gadgets';
-    }
-  };
-
   return (
     <header
       className={`border-b-elements dark:border-b-dark-elements border-b-[2px] border-solid`}
@@ -29,8 +16,8 @@ export const Header: FC<THeaderProps> = () => {
         className={`${style.headerContainer} relative flex justify-between items-center`}
       >
         <div className="flex items-center justify-between sm:resp-[w-min/429/429] lg:resp-[w-min/553/553]">
-          <Logo onTitleChange={handleTitleChange} />
-          <NavBar onTitleChange={handleTitleChange} />
+          <Logo />
+          <NavBar />
         </div>
         <div className="flex sm:items-center">
           <div className="relative after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[48px] sm:hidden after:top-0 after:bottom-0">
@@ -39,11 +26,7 @@ export const Header: FC<THeaderProps> = () => {
             </a>
           </div>
           <div className="hidden sm:block after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[95px] lg:after:right-[128px] after:top-0 after:bottom-0">
-            <NavLink
-              className={favoriteNCartStyles}
-              onClick={() => handleTitleChange('Favourites')}
-              to="/favourites"
-            >
+            <NavLink className={favoriteNCartStyles} to="/favourites">
               <svg
                 width="16"
                 height="16"
@@ -63,7 +46,9 @@ export const Header: FC<THeaderProps> = () => {
           <div className="hidden sm:block after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[48px] lg:after:right-[64px] after:top-0 after:bottom-0">
             <NavLink
               to="/cart"
-              onClick={() => handleTitleChange('Cart')}
+              onClick={() => {
+                document.title = 'babay';
+              }}
               className={favoriteNCartStyles}
             >
               <svg

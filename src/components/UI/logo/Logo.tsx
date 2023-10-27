@@ -8,13 +8,22 @@ import png from './assets/ok.svg';
 
 type TLogo = {
   position?: 'header' | 'footer';
+  onTitleChange: (title: string) => void;
 };
 
-export const Logo: FC<TLogo> = ({ position = 'header' }) => {
+export const Logo: FC<TLogo> = ({ position = 'header', onTitleChange }) => {
+  const handleLogoClick = () => {
+    if (position === 'footer') {
+      handleBackToTop();
+    }
+
+    onTitleChange('');
+  };
+
   return (
     <Link
       to="/"
-      onClick={position === 'footer' ? handleBackToTop : () => {}}
+      onClick={handleLogoClick}
       className="uppercase inline-block text-primary font-extrabold resp-[font/13/13] resp-[line-height/10/11] tracking-[0.1px] sm:tracking-[0px] dark:text-dark-white"
     >
       <span className="block relative">
