@@ -13,7 +13,7 @@ export const Layout: FC<TLayoutProps> = () => {
     <>
       <div className="min-h-screen">
         <Header />
-        <main className="pb-[94px]">
+        <main>
           <Outlet />
         </main>
       </div>

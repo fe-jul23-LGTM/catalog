@@ -6,7 +6,7 @@ import { Home } from '~components/pages/Home';
 import { Cart } from '~components/pages/Cart';
 import { Phones } from '~components/pages/Phones';
 import { Tablets } from '~components/pages/Tablets';
-import { Accessories } from '~components/pages/Accessories/Accessories';
+import { Accessories } from '~components/pages/Accessories';
 
 export const AppRoutes: FC = () => {
   return (

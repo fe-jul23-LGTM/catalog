@@ -1,12 +1,20 @@
 /* eslint-disable max-len */
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
+
+import { handleBackToTop } from '~components/widgets/Footer/utils/handleScrollTo';
 
 import png from './assets/ok.svg';
 
-export const Logo = () => {
+type TLogo = {
+  position?: 'header' | 'footer';
+};
+
+export const Logo: FC<TLogo> = ({ position = 'header' }) => {
   return (
     <Link
       to="/"
+      onClick={position === 'footer' ? handleBackToTop : () => {}}
       className="uppercase inline-block text-primary font-extrabold resp-[font/13/13] resp-[line-height/10/11] tracking-[0.1px] sm:tracking-[0px] dark:text-dark-white"
     >
       <span className="block relative">
