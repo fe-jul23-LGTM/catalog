@@ -13,14 +13,12 @@ export const FavouriteButton:FC<TFavouriteButtonProps> = ({
   const generalStyles = classNames(
     `resp-[width/40/40] resp-[height/40/40]
     flex items-center justify-center
-    border border-solid   
+    border 
     ${selected
-    ? 'bg-none border-elements dark:border-solid dark:border-dark-elements '
-      + 'hover:bg-none hover:border-elements '
-      + 'dark:hover:border-solid dark:hover:border-dark-elements'
+    ? 'border-elements dark:border-dark-elements '
     : 'bg-white border-icons dark:border-none dark:bg-dark-elements '
       + 'hover:border-primary '
-      + 'dark:hover:border-none dark:hover:bg-dark-icons'}`,
+      + 'dark:hover:bg-dark-icons'}`,
   );
 
   const heartStyles = classNames('fill-primary dark:fill-white');

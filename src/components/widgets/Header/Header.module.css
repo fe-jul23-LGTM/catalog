@@ -1,0 +1,7 @@
+.headerContainer {
+  @apply resp-[pl/16/16] lg:max-w-[1440px] lg:m-auto lg:resp-[pl/24/24];
+}
+
+.favoriteNCart path{
+  fill: white;
+}

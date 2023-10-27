@@ -11,6 +11,7 @@ export default {
     },
     screens: {
       'sm': '640px',
+      'sm-tablet': '780px',
       'lg': '1200px',
     },
     colors: {

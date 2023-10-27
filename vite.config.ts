@@ -8,12 +8,10 @@ export default defineConfig({
   base: '/catalog',
   resolve: {
     alias: {
-      '~app': path.resolve('src/1_app'),
-      '~pages': path.resolve('src/2_pages'),
-      '~widgets': path.resolve('src/3_widgets'),
-      '~features': path.resolve('src/4_features'),
-      '~entities': path.resolve('src/5_entities'),
-      '~shared': path.resolve('src/6_shared'),
+      '~assets': path.resolve('src/assets'),
+      '~components': path.resolve('src/components'),
+      '~styles': path.resolve('src/styles'),
+      '~routers': path.resolve('src/routers'),
     },
   },
 });

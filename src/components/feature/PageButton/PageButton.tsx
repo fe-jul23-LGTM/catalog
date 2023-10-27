@@ -15,15 +15,14 @@ export const PageButton: FC<PageButtonProps> = ({
   const generalStyles = classNames(
     `resp-[width/32/32] resp-[height/32/32]
     flex items-center justify-center
-    border border-solid border-elements
-    text-black
+    border border-elements
     dark:border-none dark:text-dark-white
-    hover:border-primary hover:text-gray-white
-    dark:hover:border-none dark:hover:bg-dark-elements
+    hover:border-primary
+    dark:hover:bg-dark-elements
     active:bg-primary active:dark:bg-dark-accent active:text-white
     ${selected
     ? 'bg-primary dark:bg-dark-accent text-white'
-    : 'bg-white dark:bg-dark-surface-1'}`,
+    : 'dark:bg-dark-surface-1 text-black'}`,
   );
 
   return (

@@ -23,10 +23,10 @@ export const ColorRadio: FC<TColorRadioProps> = ({
             onChange={() => onSelect(color)}
             className="hidden"
           />
-          <div className={`flex items-center justify-center w-8 h-8 rounded-full border-2  ${
+          <div className={`flex items-center justify-center resp-[w/32/32] resp-[h/32/32] rounded-full border-2  ${
             selectedColor === color
-              ? 'border-black hover:border-black '
-                + 'dark:border-dark-white hover:dark:border-dark-white'
+              ? 'border-black'
+                + 'dark:border-dark-white'
               : 'border-elements dark:border-dark-elements '
                 + 'hover:border-icons dark:hover:border-dark-secondary'
           }`}>

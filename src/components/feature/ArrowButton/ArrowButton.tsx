@@ -15,15 +15,13 @@ export const ArrowButton:FC<TArrowButtonProps> = ({
   const generalStyles = classNames(
     `resp-[width/32/32] resp-[height/32/32]
     flex items-center justify-center
-    border border-solid
+    border
     dark:text-gray-white    
     ${disabled
-    ? 'bg-none border-elements dark:border-solid dark:border-dark-elements '
-      + 'hover:bg-none hover:border-elements'
-      + 'dark:hover:border-solid dark:hover:border-dark-elements'
+    ? 'bg-none border-elements dark:border-dark-elements '
     : 'bg-white border-icons dark:border-none dark:bg-dark-elements '
       + 'hover:border-primary hover:text-gray-white '
-      + 'dark:hover:border-none dark:hover:bg-dark-icons'}`,
+      + 'dark:hover:bg-dark-icons'}`,
   );
 
   const arrowStyles = classNames(
