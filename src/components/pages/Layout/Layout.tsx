@@ -11,7 +11,7 @@ type TLayoutProps = object;
 export const Layout: FC<TLayoutProps> = () => {
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-[calc(100vh-132px)]">
         <Header />
         <main>
           <Outlet />
