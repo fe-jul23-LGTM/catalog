@@ -23,6 +23,7 @@ export default {
       green: '#27AE60',
       red: '#EB5757',
       white: '#ffffff',
+      black: '#000000',
       'dark-accent': '#905BFF',
       'dark-accent-hover': '#A378FF',
       'dark-white': '#F1F2F9',
