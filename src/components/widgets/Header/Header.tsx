@@ -37,6 +37,16 @@ export const Header: FC<THeaderProps> = () => {
     };
   }, [isMenuOpen]);
 
+  const handleTitleChange = (title: string) => {
+    if (title) {
+      document.title = 'Nice Gadgets | ' + title;
+
+      return;
+    }
+
+    document.title = 'Nice Gadgets';
+  };
+
   return (
     <header
       className={`border-b-elements dark:border-b-dark-elements border-b-[2px] border-solid`}
@@ -45,17 +55,21 @@ export const Header: FC<THeaderProps> = () => {
         className={`${style.headerContainer} relative flex justify-between items-center`}
       >
         <div className="flex items-center justify-between sm:resp-[w-min/429/429] lg:resp-[w-min/553/553]">
-          <Logo />
-          <NavBar />
+          <Logo onTitleChange={handleTitleChange} />
+          <NavBar onTitleChange={handleTitleChange} />
         </div>
         <div className="flex sm:items-center">
           <div className="relative after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[48px] sm:hidden after:top-0 after:bottom-0">
             <div className="resp-[px/16/16] resp-[py/16/16] block cursor-pointer">
-              <Burger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen}/>
+              <Burger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
             </div>
           </div>
           <div className="hidden sm:block after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[95px] lg:after:right-[128px] after:top-0 after:bottom-0">
-            <NavLink className={favoriteNCartStyles} to="/favourites">
+            <NavLink
+              className={favoriteNCartStyles}
+              onClick={() => handleTitleChange('Favourites')}
+              to="/favourites"
+            >
               <svg
                 width="16"
                 height="16"
@@ -73,7 +87,11 @@ export const Header: FC<THeaderProps> = () => {
             </NavLink>
           </div>
           <div className="hidden sm:block after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[48px] lg:after:right-[64px] after:top-0 after:bottom-0">
-            <NavLink to="/cart" className={favoriteNCartStyles}>
+            <NavLink
+              to="/cart"
+              onClick={() => handleTitleChange('Cart')}
+              className={favoriteNCartStyles}
+            >
               <svg
                 width="16"
                 height="16"

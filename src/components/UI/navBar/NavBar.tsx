@@ -7,9 +7,13 @@ import { styleForCurrentLink } from '~components/widgets/Header/helper';
 
 type TNavBarProps = {
   isBurger?: boolean;
+  onTitleChange: (title: string) => void;
 };
 
-export const NavBar: FC<TNavBarProps> = ({ isBurger = false }) => {
+export const NavBar: FC<TNavBarProps> = ({
+  onTitleChange,
+  isBurger = false,
+}) => {
   const navBarStyle = classNames(
     'sm:block resp-[font/12/12] font-extrabold resp-[line-height/11/12] tracking-[0.48] uppercase',
     {
@@ -31,6 +35,7 @@ export const NavBar: FC<TNavBarProps> = ({ isBurger = false }) => {
               styleForCurrentLink(navStyle.isActive, isBurger)
             }
             to="/"
+            onClick={() => onTitleChange('')}
           >
             home
           </NavLink>
@@ -41,6 +46,7 @@ export const NavBar: FC<TNavBarProps> = ({ isBurger = false }) => {
               styleForCurrentLink(navStyle.isActive, isBurger)
             }
             to="/phones"
+            onClick={() => onTitleChange('Phones')}
           >
             phones
           </NavLink>
@@ -51,6 +57,7 @@ export const NavBar: FC<TNavBarProps> = ({ isBurger = false }) => {
               styleForCurrentLink(navStyle.isActive, isBurger)
             }
             to="/tablets"
+            onClick={() => onTitleChange('Tablets')}
           >
             tablets
           </NavLink>
@@ -61,6 +68,7 @@ export const NavBar: FC<TNavBarProps> = ({ isBurger = false }) => {
               styleForCurrentLink(navStyle.isActive, isBurger)
             }
             to="/accessories"
+            onClick={() => onTitleChange('Accessories')}
           >
             accessories
           </NavLink>
