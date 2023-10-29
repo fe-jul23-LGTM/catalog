@@ -8,7 +8,7 @@ import png from './assets/ok.svg';
 
 type TLogo = {
   position?: 'header' | 'footer';
-  onTitleChange: (title: string) => void;
+  onTitleChange?: (title: string) => void;
 };
 
 export const Logo: FC<TLogo> = ({ position = 'header', onTitleChange }) => {
@@ -17,7 +17,9 @@ export const Logo: FC<TLogo> = ({ position = 'header', onTitleChange }) => {
       handleBackToTop();
     }
 
-    onTitleChange('');
+    if (onTitleChange) {
+      onTitleChange('');
+    }
   };
 
   return (
