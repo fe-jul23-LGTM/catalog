@@ -9,11 +9,12 @@ import { Burger } from './UI/burger';
 import { favoriteNCartStyles } from './helper';
 
 import { BurgerMenu } from '../BurgerMenu';
-import { BODY_OVERFLOW, SITE_TITLE } from '~helpers/constants';
+import { BODY_OVERFLOW } from '~helpers/constants';
 import { SwitchButton } from '~components/UI/switchButton';
 import { ThemeContext } from '~context/Theme';
 
 import style from './Header.module.css';
+import { handleTitleChange } from '~helpers/functions';
 
 export const Header: FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -44,16 +45,6 @@ export const Header: FC = () => {
       document.body.classList.remove(BODY_OVERFLOW);
     };
   }, [isMenuOpen]);
-
-  const handleTitleChange = (title: string) => {
-    if (title) {
-      document.title = `${SITE_TITLE} |  + title`;
-
-      return;
-    }
-
-    document.title = SITE_TITLE;
-  };
 
   return (
     <header

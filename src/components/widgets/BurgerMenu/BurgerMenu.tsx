@@ -8,6 +8,7 @@ import { NavBar } from '~components/UI/navBar';
 import { getStyleLink } from './helper';
 
 import styles from './BurgerMenu.module.css';
+import { handleTitleChange } from '~helpers/functions';
 
 type TBurgerMenuProps = {
   isMenuOpen: boolean;
@@ -24,10 +25,11 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
 
   return (
     <aside className={asideStyle}>
-      <NavBar isBurger={true} />
+      <NavBar onTitleChange={handleTitleChange} isBurger={true} />
 
       <div className="w-[100vw] h-[64px] absolute bottom-0 flex items-center justify-between gap-[144px]">
         <NavLink
+          onClick={() => handleTitleChange('favourites')}
           to="/favourites"
           className={activeLink =>
             getStyleLink(activeLink.isActive, 'left-[25%]', '-translate-x-2/4')
@@ -53,6 +55,7 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
           className={activeLink =>
             getStyleLink(activeLink.isActive, 'right-[25%]', 'translate-x-2/4')
           }
+          onClick={() => handleTitleChange('cart')}
         >
           <svg
             width="16"
