@@ -51,6 +51,18 @@
       "~types/*": [
         "../types/*"
       ],
+      "~context": [
+        "./context"
+      ],
+      "~context/*": [
+        "./context/*"
+      ],
+      "~helpers": [
+        "./helpers"
+      ],
+      "~helpers/*": [
+        "./helpers/*"
+      ],
     }
   },
   "include": [

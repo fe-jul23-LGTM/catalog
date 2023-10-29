@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { FC } from 'react';
 import { ShopByCategory } from '~components/widgets/ShopByCategory';
 

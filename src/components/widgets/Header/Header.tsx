@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import { Logo } from '~components/UI/logo';
@@ -8,17 +8,25 @@ import { Burger } from './UI/burger';
 
 import { favoriteNCartStyles } from './helper';
 
-import style from './Header.module.css';
 import { BurgerMenu } from '../BurgerMenu';
+import { BODY_OVERFLOW, SITE_TITLE } from '~helpers/constants';
+import { SwitchButton } from '~components/UI/switchButton';
+import { ThemeContext } from '~context/Theme';
 
-type THeaderProps = object;
+import style from './Header.module.css';
 
-export const Header: FC<THeaderProps> = () => {
+export const Header: FC = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const urlLocation = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleTheme = () => {
+    toggleTheme();
   };
 
   useEffect(() => {
@@ -29,22 +37,22 @@ export const Header: FC<THeaderProps> = () => {
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add(BODY_OVERFLOW);
     }
 
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove(BODY_OVERFLOW);
     };
   }, [isMenuOpen]);
 
   const handleTitleChange = (title: string) => {
     if (title) {
-      document.title = 'Nice Gadgets | ' + title;
+      document.title = `${SITE_TITLE} |  + title`;
 
       return;
     }
 
-    document.title = 'Nice Gadgets';
+    document.title = SITE_TITLE;
   };
 
   return (
@@ -64,6 +72,11 @@ export const Header: FC<THeaderProps> = () => {
               <Burger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
             </div>
           </div>
+          <SwitchButton
+            className="absolute right-[60px] sm:right-[105px] lg:right-[145px] lg:top-[13px] top-[4px] sm:top-[5.5px]"
+            isDark={theme}
+            onClick={handleTheme}
+          />
           <div className="hidden sm:block after:w-[2px] after:bg-elements dark:after:bg-dark-elements after:absolute after:right-[95px] lg:after:right-[128px] after:top-0 after:bottom-0">
             <NavLink
               className={favoriteNCartStyles}
