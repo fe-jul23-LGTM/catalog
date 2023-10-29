@@ -45,6 +45,12 @@
       "~routers/*": [
         "./routers/*"
       ],
+      "~types": [
+        "../types"
+      ],
+      "~types/*": [
+        "../types/*"
+      ],
     }
   },
   "include": [

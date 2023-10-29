@@ -12,6 +12,7 @@ export default defineConfig({
       '~components': path.resolve('src/components'),
       '~styles': path.resolve('src/styles'),
       '~routers': path.resolve('src/routers'),
+      '~types': path.resolve('types'),
     },
   },
 });

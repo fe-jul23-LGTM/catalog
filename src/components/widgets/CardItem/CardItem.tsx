@@ -1,25 +1,21 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '~components/UI/button';
-import { Phone } from '../../../../types/IPhone';
+import { IPhone } from '~types/IPhone';
 import { Link } from 'react-router-dom';
+import { FavouriteButton } from '~components/UI/commonButtons/FavouriteButton';
 
 type TPhoneCardProps = {
-  phone: Phone;
+  phone: IPhone;
 };
 
 export const CardItem: React.FC<TPhoneCardProps> = ({ phone }) => {
-  const [isFavouriteActive, setIsFavouriteActive] = useState(false);
-  const handleFavouriteClick = () => {
-    setIsFavouriteActive(!isFavouriteActive);
-  };
-
   return (
-    <Link to="/phones">
-      <div className="resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md hover:scale-105 transition-transform duration-1000">
-        <div className="transition-transform duration-1000 hover:scale-105">
+    <div className="resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md transition-shadow duration-300">
+      <Link to={`/phones/${phone.phoneId}`}>
+        <div className="transition-transform duration-1000">
           <img
-            src="catalog/src/assets/icons/phone-photo.svg"
+            src={phone.imageSrc}
             alt={`${phone.phoneName}`}
             className="resp-[w-max/208/148] resp-[h-max/196/129] resp-[pb/8/8] mx-auto"
           />
@@ -48,26 +44,14 @@ export const CardItem: React.FC<TPhoneCardProps> = ({ phone }) => {
           <p className="text-secondary dark:text-dark-secondary">RAM</p>
           <p className="text-primary dark:text-dark-white">{`${phone.ram} GB`}</p>
         </div>
+      </Link>
 
-        <div className="justify-between flex resp-[gap-x/8/8]">
-          <Button isAdd> Add to cart </Button>
-          <button className="w-10 h-10" onClick={handleFavouriteClick}>
-            {isFavouriteActive ? (
-              <img
-                src="catalog/src/assets/icons/favourites.svg"
-                alt="icon"
-                className="w-full h-full"
-              />
-            ) : (
-              <img
-                src="catalog/src/assets/icons/favourites.svg"
-                alt="icon"
-                className="w-full h-full"
-              />
-            )}
-          </button>
-        </div>
+      <div className="justify-between flex resp-[gap-x/8/8]">
+        <Button className="w-[193px]" isAdd>
+          Add to cart
+        </Button>
+        <FavouriteButton />
       </div>
-    </Link>
+    </div>
   );
 };

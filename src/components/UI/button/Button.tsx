@@ -7,6 +7,7 @@ type TButtonProps = {
   isSelect?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  className?: string;
 };
 
 export const Button: FC<TButtonProps> = ({
@@ -15,6 +16,7 @@ export const Button: FC<TButtonProps> = ({
   onClick,
   children,
   disabled,
+  className = '',
 }) => {
   // context
   const isPressed = false;
@@ -31,7 +33,7 @@ export const Button: FC<TButtonProps> = ({
   });
 
   return (
-    <button disabled={disabled} onClick={onClick} className={`${generalStyles}`}>
+    <button disabled={disabled} onClick={onClick} className={`${generalStyles} ${className}`}>
       {children}
     </button>
   );
