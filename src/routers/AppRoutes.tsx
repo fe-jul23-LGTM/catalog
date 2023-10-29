@@ -7,6 +7,7 @@ import { Cart } from '~components/pages/Cart';
 import { Phones } from '~components/pages/Phones';
 import { Tablets } from '~components/pages/Tablets';
 import { Accessories } from '~components/pages/Accessories';
+import { PageNotFound } from '~components/pages/PageNotFound';
 
 export const AppRoutes: FC = () => {
   return (
@@ -31,7 +32,7 @@ export const AppRoutes: FC = () => {
             element={<h1 className="title-1">Favourites</h1>}
           />
           <Route path="/cart" element={<Cart />} />
-          <Route path='*' element={<h1 className='title-1'>404 page</h1>}/>
+          <Route path='*' element={<PageNotFound />}/>
         </Route>
       </Routes>
     </Router>
