@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { Button } from '~components/UI/button';
 import { IPhone } from '~types/IPhone';
-import { Link } from 'react-router-dom';
 import { FavouriteButton } from '~components/UI/commonButtons/FavouriteButton';
 
 type TPhoneCardProps = {

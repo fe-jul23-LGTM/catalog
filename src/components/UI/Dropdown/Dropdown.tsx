@@ -10,14 +10,20 @@ const itemsPerPage = ['4', '8', '16', 'all'];
 export const Dropdown: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortBy = searchParams.get('sortBy') || sortsBy[0];
-  const itemPerPage = searchParams.get('itemPerPage') || itemsPerPage[0];
+  const itemPerPage = searchParams.get('itemPerPage') || itemsPerPage[3];
   const [openSort, setOpenSort] = useState(false);
   const [openItems, setOpenItems] = useState(false);
 
   const handleSelectItemClick = (sortField: string) => {
     const params = new URLSearchParams(searchParams);
 
-    if (sortsBy.includes(sortField)) {
+    if (sortField === sortsBy[0]) {
+      params.delete('sortBy');
+      setOpenSort(!openSort);
+    } else if (sortField === itemsPerPage[3]) {
+      params.delete('itemPerPage');
+      setOpenItems(!openItems);
+    } else if (sortsBy.includes(sortField)) {
       params.set('sortBy', sortField);
       setOpenSort(!openSort);
     } else if (itemsPerPage.includes(sortField)) {
@@ -46,23 +52,25 @@ export const Dropdown: FC = () => {
           {sortBy}
           <img src={openSort ? ChevronUp : ChevronDown} alt="" />
         </div>
-        <ul
-          className={`${
-            openSort
-            && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements'
-          }`}
-        >
-          {openSort
-            && sortsBy.map(item => (
-              <li
-                key={item}
-                className="p-2 hover:text-primary hover:bg-hoverBg dark:hover:text-dark-white dark:hover:bg-dark-surface-2"
-                onClick={() => handleSelectItemClick(item)}
-              >
-                {item}
-              </li>
-            ))}
-        </ul>
+        <div className='relative resp-[w-min/187/136]'>
+          <ul
+            className={`${
+              openSort
+              && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements absolute z-20 w-full'
+            }`}
+          >
+            {openSort
+              && sortsBy.map(item => (
+                <li
+                  key={item}
+                  className="p-2 hover:text-primary hover:bg-hoverBg dark:hover:text-dark-white dark:hover:bg-dark-surface-2"
+                  onClick={() => handleSelectItemClick(item)}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
       </div>
 
       <div>
@@ -81,23 +89,25 @@ export const Dropdown: FC = () => {
           {itemPerPage}
           <img src={openItems ? ChevronUp : ChevronDown} alt="" />
         </div>
-        <ul
-          className={`${
-            openItems
-            && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements'
-          }`}
-        >
-          {openItems
-            && itemsPerPage.map(amount => (
-              <li
-                key={amount}
-                className="p-2 hover:text-primary hover:bg-hoverBg dark:hover:text-dark-white dark:hover:bg-dark-surface-2"
-                onClick={() => handleSelectItemClick(amount)}
-              >
-                {amount}
-              </li>
-            ))}
-        </ul>
+        <div className='relative resp-[w-min/128/136]'>
+          <ul
+            className={`${
+              openItems
+              && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements absolute z-20 w-full'
+            }`}
+          >
+            {openItems
+              && itemsPerPage.map(amount => (
+                <li
+                  key={amount}
+                  className="p-2 hover:text-primary hover:bg-hoverBg dark:hover:text-dark-white dark:hover:bg-dark-surface-2"
+                  onClick={() => handleSelectItemClick(amount)}
+                >
+                  {amount}
+                </li>
+              ))}
+            </ul>
+          </div>
       </div>
     </section>
   );
