@@ -56,7 +56,7 @@ export const Dropdown: FC = () => {
           <ul
             className={`${
               openSort
-              && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements absolute w-full'
+              && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements absolute z-20 w-full'
             }`}
           >
             {openSort
@@ -93,7 +93,7 @@ export const Dropdown: FC = () => {
           <ul
             className={`${
               openItems
-              && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements absolute w-full'
+              && 'bg-white border border-elements mt-1 dark:bg-dark-black dark:text-dark-secondary dark:border dark:border-dark-elements absolute z-20 w-full'
             }`}
           >
             {openItems

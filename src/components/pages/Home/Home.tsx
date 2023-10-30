@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { FC } from 'react';
+import { Dropdown } from '~components/UI/Dropdown';
 import { ShopByCategory } from '~components/widgets/ShopByCategory';
 
 type THomeProps = object;
@@ -20,6 +21,7 @@ export const Home: FC<THomeProps> = () => {
   return (
     <div>
       <ShopByCategory />
+      <Dropdown/>
     </div>
   );
 };
