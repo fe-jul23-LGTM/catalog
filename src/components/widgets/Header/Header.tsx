@@ -47,13 +47,23 @@ export const Header: FC = () => {
 
   const handleTitleChange = (title: string) => {
     if (title) {
-      document.title = `${SITE_TITLE} |  + title`;
+      document.title = `${SITE_TITLE} | ${title}`;
+      localStorage.setItem('pageTitle', title);
 
       return;
     }
 
     document.title = SITE_TITLE;
+    localStorage.removeItem('pageTitle');
   };
+
+  useEffect(() => {
+    const storedTitle = localStorage.getItem('pageTitle');
+
+    if (storedTitle) {
+      handleTitleChange(storedTitle);
+    }
+  }, []);
 
   return (
     <header
