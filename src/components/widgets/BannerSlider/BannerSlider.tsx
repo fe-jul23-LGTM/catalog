@@ -16,7 +16,8 @@ export const BannerSlider: FC<TBannerSliderProps> = () => {
   const bigImageStyles = `sm:block hidden object-contain resp-[width/1040/320]`;
   const smallImageStyles = `block sm:hidden object-contain`;
 
-  const buttonStyles = `sm:flex hidden items-center justify-center top-0
+  const buttonStyles = `sm:flex hidden items-center justify-center
+    top-0
     resp-[width/32/32]
     border border-solid border-icons
     dark:bg-dark-surface-2`;
