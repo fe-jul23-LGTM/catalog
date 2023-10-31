@@ -12,9 +12,9 @@ import { BurgerMenu } from '../BurgerMenu';
 import { BODY_OVERFLOW } from '~helpers/constants';
 import { SwitchButton } from '~components/UI/switchButton';
 import { ThemeContext } from '~context/Theme';
+import { handleTitleChange } from '~helpers/functions';
 
 import style from './Header.module.css';
-import { handleTitleChange } from '~helpers/functions';
 
 export const Header: FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -45,6 +45,14 @@ export const Header: FC = () => {
       document.body.classList.remove(BODY_OVERFLOW);
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    const storedTitle = localStorage.getItem('pageTitle');
+
+    if (storedTitle) {
+      handleTitleChange(storedTitle);
+    }
+  }, []);
 
   return (
     <header
