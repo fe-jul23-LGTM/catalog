@@ -8,4 +8,6 @@ export interface IPhone {
   typeOfDisplay: string;
   capacity: number;
   ram: number;
+  screenResolution: string;
+  processor: string;
 }
