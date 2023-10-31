@@ -1,45 +1,96 @@
 /* eslint-disable max-len */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { CartItem } from '../CartItem';
 import { Button } from '~components/UI/button';
 import '~assets/icons/arrow-down.svg';
 
 type TCartCheckoutSection = {
   usersProductsList?: [];
-  deleteFromCart?: () => void;
 };
 
 const randomProductsList = [
   {
-    id: '00',
-    imgPath: 'src/components/widgets/CartCheckoutSection/assets/image1.png',
-    productModel: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-    price: 999,
+    phoneId: 1,
+    category: 'phones',
+    phone: 'apple-iphone-7-32gb-black',
+    itemId: 'apple-iphone-7-32gb-black',
+    phoneName: 'Apple iPhone 7 32GB Black',
+    fullPrice: 400,
+    price: 375,
+    screenSize: 4.7,
+    typeOfDisplay: 'IPS',
+    capacity: 32,
+    color: 'black',
+    ram: 2,
+    year: 2016,
+    imageSrc: 'src/components/widgets/CartCheckoutSection/assets/image1.png',
   },
   {
-    id: '01',
-    imgPath: 'src/components/widgets/CartCheckoutSection/assets/image2.png',
-    productModel: 'Apple iPhone 14 Plus 128GB PRODUCT Red (MQ513)',
-    price: 859,
+    phoneId: 2,
+    category: 'phones',
+    phone: 'apple-iphone-7-plus-32gb-black',
+    itemId: 'apple-iphone-7-plus-32gb-black',
+    phoneName: 'Apple iPhone 7 Plus 32GB Black',
+    fullPrice: 540,
+    price: 500,
+    screenSize: 5.5,
+    typeOfDisplay: 'IPS',
+    capacity: 32,
+    color: 'black',
+    ram: 3,
+    year: 2016,
+    imageSrc: 'src/components/widgets/CartCheckoutSection/assets/image2.png',
   },
   {
-    id: '02',
-    imgPath: 'src/components/widgets/CartCheckoutSection/assets/image3.png',
-    productModel: 'Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)',
-    price: 799,
+    phoneId: 3,
+    category: 'phones',
+    phone: 'apple-iphone-8-64gb-gold',
+    itemId: 'apple-iphone-8-64gb-gold',
+    phoneName: 'Apple iPhone 8 64GB Gold',
+    fullPrice: 600,
+    price: 550,
+    screenSize: 4.7,
+    typeOfDisplay: 'IPS',
+    capacity: 64,
+    color: 'gold',
+    ram: 2,
+    year: 2017,
+    imageSrc: 'src/components/widgets/CartCheckoutSection/assets/image3.png',
   },
 ];
 
 export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
   usersProductsList = randomProductsList,
-  deleteFromCart = () => {},
 }) => {
-  const totalPrice = usersProductsList.reduce((totalSum, elem) => {
-    return totalSum + elem.price;
+  const [productsList, setProductsList] = useState(
+    usersProductsList.map(product => ({
+      ...product,
+      count: 1,
+    })),
+  );
+  const deleteFromCart = (id: number) => {
+    setProductsList(prevProducts =>
+      prevProducts.filter(product => product.phoneId !== id));
+  };
+  const totalPrice = productsList.reduce((totalSum, elem) => {
+    return totalSum + elem.price * elem.count;
   }, 0);
-
+  const totalItems = productsList.reduce((items, product) => {
+    return items + product.count;
+  }, 0);
   const handleSubmit = (formEvent: React.FormEvent<HTMLFormElement>) => {
     formEvent.preventDefault();
+  };
+
+  const changeCount = (id: number, newCount: number) => {
+    setProductsList(prevProducts =>
+      prevProducts.map(product => {
+        if (product.phoneId === id) {
+          product.count = newCount;
+        }
+
+        return product;
+      }));
   };
 
   return (
@@ -51,12 +102,11 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
     lg:resp-[gap-x/16/16] resp-[gap-y/32/32]"
       >
         <div className="flex flex-col resp-[gap/16/16]">
-          {usersProductsList.map(product => (
+          {productsList.map(product => (
             <CartItem
-              key={product.id}
-              imgPath={product.imgPath}
-              productModel={product.productModel}
-              price={product.price}
+              key={product.itemId}
+              product={product}
+              setItemsCount={changeCount}
               onDelete={deleteFromCart}
             />
           ))}
@@ -73,11 +123,9 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
           after:bg-elements after:dark:bg-dark-elements after:left-0
           after:right-0 after:bottom-0 resp-[pb/16/16]"
           >
-            <p className="title-2">{`$${totalPrice}`}</p>
+            <p className="title-2">${totalPrice}</p>
 
-            <p>{`Total for ${usersProductsList.length} item${
-              usersProductsList.length > 1 ? 's' : ''
-            }`}</p>
+            <p>{`Total for ${totalItems} item${totalItems > 1 ? 's' : ''}`}</p>
           </div>
 
           <Button isAdd>Checkout</Button>

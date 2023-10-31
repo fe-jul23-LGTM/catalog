@@ -1,42 +1,43 @@
 /* eslint-disable max-len */
-import classNames from 'classnames';
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { IPhone } from '~types/IPhone';
 
 type TCartItemProps = {
-  imgPath?: string;
-  productModel?: string;
-  price?: number;
-  onDelete?: () => void;
+  product: IPhone & { count: number };
+  setItemsCount?: (id: number, newCount: number) => void;
+  onDelete?: (id: number) => void;
 };
 
 export const CartItem: FC<TCartItemProps> = ({
-  imgPath = 'src/components/widgets/CartItem/assets/image8.png',
-  productModel = 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-  price = 999,
+  product,
+  setItemsCount = () => {},
   onDelete = () => {},
 }) => {
-  const [itemsCount, setItemsCount] = useState(1);
-  const buttonCounterClass = classNames(
-    'border box-border border border-icons flex justify-center items-center',
-    'text-center resp-[width/32/32] resp-[height/32/32]',
-    'disabled:border-elements dark:disabled:border-dark-elements',
-    'disabled:fill-icons fill-primary',
-    'dark:fill-dark-white dark:disabled:fill-dark-icons',
-    'disabled:dark:bg-none',
-    'dark:border-none dark:disabled:border-dark-icons',
-  );
+  const { phoneId, imageSrc, phoneName, price, count } = product;
+  const buttonCounterClass = `resp-[width/32/32] resp-[height/32/32]
+  flex items-center justify-center border
+  hover:border-primary hover:text-gray-white
+  disabled:border-elements
+  disabled:border-icons
+  disabled:fill-icons
+  disabled:dark:bg-opacity-0
+  dark:border-dark-elements
+  dark:text-gray-white
+  disabled:dark:!border disabled:dark:border-dark-icons dark:bg-dark-elements
+  dark:hover:bg-dark-icons
+  dark:fill-dark-white dark:disabled:fill-dark-icons`;
 
   const handlePlusClicked = () => {
-    setItemsCount(prevCount => prevCount + 1);
+    setItemsCount(phoneId, count + 1);
   };
   const handleMinusClicked = () => {
-    setItemsCount(prevCount => prevCount - 1);
+    setItemsCount(phoneId, count - 1);
   };
 
   return (
     <div className="flex flex-col items-stretch sm:flex-row resp-[gap-x/24/24] resp-[gap-y/16/16] sm:justify-between border border-elements dark:border-none dark:bg-dark-surface-1 px-[16px] py-[16px] lg:py-[24px] lg:px-[24px]">
       <div className="flex items-center resp-[gap-x/24/24] fill-icons dark:fill-dark-icons">
-        <button onClick={onDelete}>
+        <button onClick={() => onDelete(phoneId)}>
           <svg
             width="16"
             height="16"
@@ -50,15 +51,15 @@ export const CartItem: FC<TCartItemProps> = ({
             />
           </svg>
         </button>
-        <img src={imgPath} alt={productModel} />
-        <p className="title-5">{productModel}</p>
+        <img src={imageSrc} alt={phoneName} />
+        <p className="title-5">{phoneName}</p>
       </div>
       <div className="flex justify-between sm:justify-end flex-grow items-center sm:resp-[gap-x/24/24]">
         <div className="flex items-center">
           <button
             className={buttonCounterClass}
             onClick={handleMinusClicked}
-            disabled={itemsCount === 1}
+            disabled={count === 1}
           >
             <svg
               className=""
@@ -75,7 +76,7 @@ export const CartItem: FC<TCartItemProps> = ({
             </svg>
           </button>
           <p className="resp-[width/32/32] block text-center title-5">
-            {itemsCount}
+            {count}
           </p>
           <button className={buttonCounterClass} onClick={handlePlusClicked}>
             <svg
@@ -92,7 +93,7 @@ export const CartItem: FC<TCartItemProps> = ({
             </svg>
           </button>
         </div>
-        <p className="title-3 sm:resp-[width/80/80] sm:text-right">{`$${price}`}</p>
+        <p className="title-3 sm:resp-[width/80/80] sm:text-right">{`$${price * count}`}</p>
       </div>
     </div>
   );
