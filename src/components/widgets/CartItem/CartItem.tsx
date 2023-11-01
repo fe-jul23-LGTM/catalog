@@ -36,8 +36,11 @@ export const CartItem: FC<TCartItemProps> = ({
 
   return (
     <div className="flex flex-col items-stretch sm:flex-row resp-[gap-x/24/24] resp-[gap-y/16/16] sm:justify-between border border-elements dark:border-none dark:bg-dark-surface-1 px-[16px] py-[16px] lg:py-[24px] lg:px-[24px]">
-      <div className="flex items-center resp-[gap-x/24/24] fill-icons dark:fill-dark-icons">
-        <button onClick={() => onDelete(phoneId)}>
+      <div className="flex items-center resp-[gap-x/24/24]">
+        <button
+          onClick={() => onDelete(phoneId)}
+          className='fill-icons dark:fill-dark-icons hover:fill-primary hover:dark:fill-dark-white'
+          >
           <svg
             width="16"
             height="16"
