@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { Button } from '~components/UI/button';
 import { IPhone } from '~types/IPhone';
 import { ColorRadio } from '~components/UI/commonButtons/ColorRadio';
