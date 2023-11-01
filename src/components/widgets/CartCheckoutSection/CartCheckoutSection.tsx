@@ -96,45 +96,51 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
 
   return (
     <section className="container-lg resp-[py/40/40]">
-      <h1 className="title-1 resp-[mb/32/32]">Cart</h1>
-
       {totalItems ? (
-        <div
-          className="flex flex-col lg:flex-row lg:items-start
+        <>
+          <h1 className="title-1 resp-[mb/32/32]">Cart</h1>
+          <div
+            className="flex flex-col lg:flex-row lg:items-start
     lg:resp-[gap-x/16/16] resp-[gap-y/32/32]"
-        >
-          <div className="flex basis-full flex-col resp-[gap/16/16]">
-            {productsList.map(product => (
-              <CartItem
-                key={product.itemId}
-                product={product}
-                setItemsCount={changeCount}
-                onDelete={deleteFromCart}
-              />
-            ))}
-          </div>
-
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col resp-[gap/16/16] color-elements
-          border border-elements dark:border-dark-elements
-          resp-[px/16/16] resp-[py/16/16]"
           >
-            <div
-              className="text-center relative after:absolute after:h-px
-          after:bg-elements after:dark:bg-dark-elements after:left-0
-          after:right-0 after:bottom-0 resp-[pb/16/16]"
-            >
-              <p className="title-2">${totalPrice}</p>
-
-              <p>{`Total for ${totalItems} item${
-                totalItems > 1 ? 's' : ''
-              }`}</p>
+            <div className="flex basis-full flex-col resp-[gap/16/16]">
+              {productsList.map(product => (
+                <CartItem
+                  key={product.itemId}
+                  product={product}
+                  setItemsCount={changeCount}
+                  onDelete={deleteFromCart}
+                />
+              ))}
             </div>
 
-            <Button isAdd className='resp-[height/48/48] resp-[width/320/320]'>Checkout</Button>
-          </form>
-        </div>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col resp-[gap/16/16] color-elements
+          border border-elements dark:border-dark-elements
+          resp-[px/16/16] resp-[py/16/16]"
+            >
+              <div
+                className="text-center relative after:absolute after:h-px
+          after:bg-elements after:dark:bg-dark-elements after:left-0
+          after:right-0 after:bottom-0 resp-[pb/16/16]"
+              >
+                <p className="title-2">${totalPrice}</p>
+
+                <p>{`Total for ${totalItems} item${
+                  totalItems > 1 ? 's' : ''
+                }`}</p>
+              </div>
+
+              <Button
+                isAdd
+                className="resp-[height/48/48] resp-[width/320/320]"
+              >
+                Checkout
+              </Button>
+            </form>
+          </div>
+        </>
       ) : (
         <div className="flex flex-col items-center justify-center resp-[gap-y/32/32]">
           <p className="pt-4 title-1 text-center text-secondary dark:text-dark-secondary">
