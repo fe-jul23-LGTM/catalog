@@ -9,7 +9,7 @@ import { CardItem } from '../CardItem';
 
 type TProductsSliderProps = {
   productsList?: [];
-  sliderName?: string;
+  sliderName: string;
 };
 
 const randomProducts = [
@@ -273,7 +273,7 @@ const randomProducts = [
 
 export const ProductsSlider: FC<TProductsSliderProps> = ({
   productsList = randomProducts,
-  sliderName = 'Random slider name',
+  sliderName,
 }) => {
   const buttonStyles = `resp-[width/32/32] resp-[height/32/32]
     flex items-center justify-center border
@@ -289,7 +289,8 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
   const buttonRightStyles = `swipe-right ${buttonStyles}`;
 
   return (
-    <Swiper
+    <section className='py-[28px] sm:py-[32px] lg:py-[40px]'>
+      <Swiper
       slidesPerView={'auto'}
       spaceBetween={16}
       breakpoints={{
@@ -367,5 +368,6 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
         </SwiperSlide>
       ))}
     </Swiper>
+    </section>
   );
 };

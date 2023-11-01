@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
@@ -23,56 +24,57 @@ export const BannerSlider: FC = () => {
   const slideNumeration = [1, 2, 3];
 
   return (
-    <Swiper
-      pagination={{ clickable: true }}
-      navigation={{ nextEl: '.swipe-right', prevEl: '.swipe-left' }}
-      modules={[Pagination, Navigation, Autoplay]}
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: false,
-      }}
-      className={swiperStyles}
-    >
-      {slideNumeration.map((slideNumber) => (
-        <SwiperSlide key={slideNumber}>
-          <div className={slideStyles}>
-            <button
-              type="button"
-              aria-label="arrow-left"
-              className={buttonStylesLeft}
-            >
+    <section className='pb-[28px] sm:pb-[32px] lg:pb-[40px]'>
+      <Swiper
+        pagination={{ clickable: true }}
+        navigation={{ nextEl: '.swipe-right', prevEl: '.swipe-left' }}
+        modules={[Pagination, Navigation, Autoplay]}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        className={swiperStyles}
+      >
+        {slideNumeration.map(slideNumber => (
+          <SwiperSlide key={slideNumber}>
+            <div className={slideStyles}>
+              <button
+                type="button"
+                aria-label="arrow-left"
+                className={buttonStylesLeft}
+              >
+                <img
+                  src="../src/assets/icons/arrow-left.svg"
+                  className="resp-[width/32/32]"
+                />
+              </button>
+
               <img
-                src='../src/assets/icons/arrow-left.svg'
-                className='resp-[width/32/32]'
+                src="../src/components/widgets/BannerSlider/assets/Banner.png"
+                alt="Banner"
+                className={bigImageStyles}
               />
-            </button>
 
-            <img
-              src='../src/components/widgets/BannerSlider/assets/Banner.png'
-              alt='Banner'
-              className={bigImageStyles}
-            />
-
-            <img
-              src=
-                '../src/components/widgets/BannerSlider/assets/SmallBanner.png'
-              alt='Banner'
-              className={smallImageStyles}
-            />
-
-            <button
-              type="button"
-              aria-label="arrow-right"
-              className={buttonStylesRight}
-            >
               <img
-                src='../src/assets/icons/arrow-right.svg'
-                className='resp-[width/32/32]'
+                src="../src/components/widgets/BannerSlider/assets/SmallBanner.png"
+                alt="Banner"
+                className={smallImageStyles}
               />
-            </button>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+
+              <button
+                type="button"
+                aria-label="arrow-right"
+                className={buttonStylesRight}
+              >
+                <img
+                  src="../src/assets/icons/arrow-right.svg"
+                  className="resp-[width/32/32]"
+                />
+              </button>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
   );
 };

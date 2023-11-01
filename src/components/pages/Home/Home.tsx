@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { FC } from 'react';
 import { BannerSlider } from '~components/widgets/BannerSlider';
+import { ProductsSlider } from '~components/widgets/ProductsSlider';
 import { ShopByCategory } from '~components/widgets/ShopByCategory';
 
 type THomeProps = object;
@@ -22,7 +23,9 @@ export const Home: FC<THomeProps> = () => {
     <>
       <h1 className='title-1 py-[24px] sm:py-[32px] lg:py-[56px]'>Welcome to Nice Gadgets store!</h1>
       <BannerSlider />
+      <ProductsSlider sliderName='Brand new models' />
       <ShopByCategory />
+      <ProductsSlider sliderName='Hot prices' />
     </>
   );
 };
