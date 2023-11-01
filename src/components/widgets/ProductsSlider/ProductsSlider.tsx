@@ -18,7 +18,7 @@ const randomProducts = [
     category: 'phones',
     phone: 'apple-iphone-7-32gb-black',
     itemId: 'apple-iphone-7-32gb-black',
-    phoneName: 'Apple iPhone 7 32GB Black',
+    phoneName: 'Apple iPhone 7 32 GB Black',
     fullPrice: 400,
     price: 375,
     screenSize: 4.7,
@@ -300,7 +300,8 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
       autoHeight
       navigation={{ nextEl: '.swipe-right', prevEl: '.swipe-left' }}
       modules={[Navigation]}
-      className="mySwiper !flex flex-col-reverse resp-[gap-y/24/24]"
+      className="mySwiper !flex !overflow-visible lg:!overflow-x-hidden
+      flex-col-reverse resp-[gap-y/24/24]"
     >
       <div className="flex justify-between items-center resp-[gap-x/72/72]">
         <p className="title-2">{sliderName}</p>
