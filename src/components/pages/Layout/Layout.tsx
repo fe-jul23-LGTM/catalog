@@ -13,7 +13,7 @@ export const Layout: FC<TLayoutProps> = () => {
     <>
       <div className="min-h-[calc(100vh-132px)]">
         <Header />
-        <main>
+        <main className='container-lg'>
           <Outlet />
         </main>
       </div>

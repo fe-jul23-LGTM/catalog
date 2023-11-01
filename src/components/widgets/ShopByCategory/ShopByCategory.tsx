@@ -30,7 +30,7 @@ const categories = [
 
 export const ShopByCategory: FC = () => {
   return (
-    <div className="container-lg resp-[py/40/40]">
+    <div className="resp-[py/40/40]">
       <h2 className="title-2 resp-[mb/24/24]">Shop by category</h2>
       <div className="resp-[grid-col/0,3/1] grid-cols-1 sm:grid-cols-3 justify-items-center gap-x-4">
         {categories.map(category => (

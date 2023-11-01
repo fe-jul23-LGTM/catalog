@@ -95,7 +95,7 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
   };
 
   return (
-    <section className="container-lg resp-[py/40/40]">
+    <section className="resp-[py/40/40]">
       {totalItems ? (
         <>
           <h1 className="title-1 resp-[mb/32/32]">Cart</h1>

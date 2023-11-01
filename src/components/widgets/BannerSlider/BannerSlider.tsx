@@ -6,11 +6,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './BannerSlider.css';
 
-type TBannerSliderProps = {
-}
-
-export const BannerSlider: FC<TBannerSliderProps> = () => {
-  const swiperStyles = 'flex justify-center mySwiper';
+export const BannerSlider: FC = () => {
+  const swiperStyles = 'flex justify-center mySwiper py-';
   const slideStyles = `flex justify-center resp-[gap-x/16/16]`;
 
   const bigImageStyles = `sm:block hidden object-contain resp-[width/1040/320]`;
@@ -21,8 +18,8 @@ export const BannerSlider: FC<TBannerSliderProps> = () => {
     resp-[width/32/32]
     border border-solid border-icons
     dark:bg-dark-surface-2`;
-  const buttonStylesLeft = `swipe-left ${buttonStyles}`;
-  const buttonStylesRight = `swipe-right  ${buttonStyles}`;
+  const buttonStylesLeft = `swipe-left dark:border-none ${buttonStyles}`;
+  const buttonStylesRight = `swipe-right dark:border-none ${buttonStyles}`;
   const slideNumeration = [1, 2, 3];
 
   return (
