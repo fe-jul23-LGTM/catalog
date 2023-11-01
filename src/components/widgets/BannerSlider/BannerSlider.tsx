@@ -24,11 +24,12 @@ export const BannerSlider: FC = () => {
   const slideNumeration = [1, 2, 3];
 
   return (
-    <section className='pb-[28px] sm:pb-[32px] lg:pb-[40px]'>
+    <section className="pb-[28px] sm:pb-[32px] lg:pb-[40px]">
       <Swiper
         pagination={{ clickable: true }}
         navigation={{ nextEl: '.swipe-right', prevEl: '.swipe-left' }}
         modules={[Pagination, Navigation, Autoplay]}
+        loop={true}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
