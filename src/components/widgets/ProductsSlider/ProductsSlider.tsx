@@ -6,10 +6,10 @@ import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 import { CardItem } from '../CardItem';
-import { Product } from '~types/Product';
+import { IProduct } from '~types/Product';
 
 type TProductsSliderProps = {
-  productsList: Product[];
+  productsList: IProduct[];
   sliderName: string;
 };
 
@@ -289,10 +289,7 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
       </div>
 
       {productsList.map(product => (
-        <SwiperSlide
-          key={product.itemId}
-          className="resp-[w-max/272/212]"
-        >
+        <SwiperSlide key={product.itemId} className="resp-[w-max/272/212]">
           <CardItem product={product} />
         </SwiperSlide>
       ))}

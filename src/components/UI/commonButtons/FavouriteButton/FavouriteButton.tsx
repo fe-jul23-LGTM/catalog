@@ -2,20 +2,19 @@
 import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { IProduct } from '~types/Product';
+import products from '~public/initial_data/products.json';
 
 type TFavouriteButtonProps = {
   selected?: boolean;
   onClick?: () => void;
   className?: string;
   productId: number;
-  products: IProduct[];
 };
 
 export const FavouriteButton: FC<TFavouriteButtonProps> = ({
   selected = false,
   className = '',
   productId,
-  products,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const generalStyles = classNames(
