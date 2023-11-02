@@ -364,7 +364,7 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
 
       {productsList.map(phone => (
         <SwiperSlide key={phone.phoneId} className="!shrink lg:!shrink-0">
-          <CardItem phone={phone} />
+          <CardItem phone={phone} products={randomProducts} />
         </SwiperSlide>
       ))}
     </Swiper>

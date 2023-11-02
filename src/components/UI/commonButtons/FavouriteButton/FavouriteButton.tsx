@@ -1,16 +1,20 @@
 /* eslint-disable max-len */
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { IPhone } from '~types/IPhone';
 
 type TFavouriteButtonProps = {
   selected?: boolean;
-  onClick?: () => void;
+  productId: number;
+  products: IPhone[];
 };
 
 export const FavouriteButton: FC<TFavouriteButtonProps> = ({
   selected = false,
-  onClick = () => {},
+  productId,
+  products,
 }) => {
+  const [isClicked, setIsClicked] = useState(false);
   const generalStyles = classNames(
     'w-[40px] h-[40px] flex items-center justify-center border transition-[border] duration-300',
     {
@@ -22,9 +26,55 @@ export const FavouriteButton: FC<TFavouriteButtonProps> = ({
 
   const heartStyles = 'fill-primary dark:fill-white';
 
+  useEffect(() => {
+    const favoritesJSON = localStorage.getItem('favorites');
+    const favorites: IPhone[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+    const productInFavourites = favorites.find(
+      product => product.phoneId === productId,
+    );
+
+    setIsClicked(!!productInFavourites);
+  }, [productId]);
+
+  const handleClickFavourite = (id: number, items: IPhone[]) => {
+    setIsClicked(!isClicked);
+
+    const favoritesJSON = localStorage.getItem('favorites');
+    const favorites: IPhone[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+
+    const productInFavourites = favorites.find(
+      product => product.phoneId === id,
+    );
+
+    if (productInFavourites) {
+      const updatedFavourites = favorites.filter(
+        product => product.phoneId !== id,
+      );
+
+      localStorage.setItem('favorites', JSON.stringify(updatedFavourites));
+
+      if (window.location.hash === '#/favourites') {
+        window.location.reload();
+      }
+    }
+
+    if (!productInFavourites) {
+      const productToAdd = items.find(product => product.phoneId === id);
+
+      if (productToAdd) {
+        favorites.push(productToAdd);
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+      }
+    }
+  };
+
   return (
-    <button className={generalStyles} onClick={onClick}>
-      {selected ? (
+    <button
+      className={generalStyles}
+      onClick={() => handleClickFavourite(productId, products)}
+    >
+      {isClicked ? (
         <svg
           width="16"
           height="16"

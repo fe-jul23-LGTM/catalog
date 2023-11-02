@@ -8,11 +8,12 @@ import { FavouriteButton } from '~components/UI/commonButtons/FavouriteButton';
 
 type TPhoneCardProps = {
   phone: IPhone;
+  products: IPhone[];
 };
 
-export const CardItem: React.FC<TPhoneCardProps> = ({ phone }) => {
+export const CardItem: React.FC<TPhoneCardProps> = ({ phone, products }) => {
   return (
-    <div className="resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md transition-shadow duration-300">
+    <div className="m-auto resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md transition-shadow duration-300">
       <Link to={`/phones/${phone.phoneId}`}>
         <div className="transition-transform duration-1000">
           <img
@@ -51,7 +52,7 @@ export const CardItem: React.FC<TPhoneCardProps> = ({ phone }) => {
         <Button className="w-[193px]" isAdd>
           Add to cart
         </Button>
-        <FavouriteButton />
+        <FavouriteButton products={products} productId={phone.phoneId} />
       </div>
     </div>
   );
