@@ -5,13 +5,16 @@ import classNames from 'classnames';
 type TFavouriteButtonProps = {
   selected?: boolean;
   onClick?: () => void;
+  className?: string;
 };
 
 export const FavouriteButton: FC<TFavouriteButtonProps> = ({
   selected = false,
   onClick = () => {},
+  className = '',
 }) => {
   const generalStyles = classNames(
+    className,
     'w-[40px] h-[40px] flex items-center justify-center border transition-[border] duration-300',
     {
       'border-elements dark:border-dark-elements': selected,

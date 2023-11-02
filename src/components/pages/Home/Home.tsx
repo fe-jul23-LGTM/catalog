@@ -9,13 +9,11 @@ import products from '~public/initial_data/products.json';
 type THomeProps = object;
 
 export const Home: FC<THomeProps> = () => {
-  const hotPricesProducts = [...products].sort(
-    (a, b) => b.fullPrice - b.price - (a.fullPrice - a.price),
-  );
+  const hotPricesProducts = [...products]
+    .sort((a, b) => b.fullPrice - b.price - (a.fullPrice - a.price))
+    .filter(product => product.year === 2022);
 
-  const brandNewProducts = [...products].sort(
-    (a, b) => b.year - a.year,
-  );
+  const brandNewProducts = [...products].sort((a, b) => b.year - a.year);
 
   return (
     <>
