@@ -12,9 +12,9 @@ type TPhoneCardProps = {
 
 export const CardItem: React.FC<TPhoneCardProps> = ({ product }) => {
   return (
-    <div className="resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md hover:scale-105 transition-transform duration-1000">
+    <div className="resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md transition-shadow duration-300">
       <Link to={`/phones/${product.id}`}>
-        <div className="transition-transform duration-1000 hover:scale-105">
+        <div>
           <img
             src={product.image}
             alt={product.name}
@@ -51,9 +51,9 @@ export const CardItem: React.FC<TPhoneCardProps> = ({ product }) => {
         </div>
       </Link>
 
-      <div className="flex justify-between resp-[gap-x/8/8]">
-        <Button isAdd className='resp-[width/155/100]'> Add to cart </Button>
-        <FavouriteButton />
+      <div className="flex justify-between gap-x-[8px]">
+        <Button isAdd> Add to cart </Button>
+        <FavouriteButton className='w-[60px]' />
       </div>
     </div>
   );
