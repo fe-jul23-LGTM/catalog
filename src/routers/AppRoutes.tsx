@@ -8,6 +8,7 @@ import { Phones } from '~components/pages/Phones';
 import { Tablets } from '~components/pages/Tablets';
 import { Accessories } from '~components/pages/Accessories';
 import { PageNotFound } from '~components/pages/PageNotFound';
+import { Favourites } from '~components/pages/Favourites';
 
 export const AppRoutes: FC = () => {
   return (
@@ -29,7 +30,7 @@ export const AppRoutes: FC = () => {
           </Route>
           <Route
             path="/favourites"
-            element={<h1 className="title-1">Favourites</h1>}
+            element={<Favourites/>}
           />
           <Route path="/cart" element={<Cart />} />
           <Route path='*' element={<PageNotFound />}/>
