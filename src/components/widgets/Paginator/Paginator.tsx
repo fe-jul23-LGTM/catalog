@@ -2,11 +2,11 @@ import { FC, useState } from 'react';
 import { PaginatoNav } from '../PaginatorNav';
 import { CardItem } from '../CardItem';
 import { Dropdown } from '~components/UI/Dropdown';
-import { Product } from '~types/Product';
+import { IProduct } from '~types/Product';
 import { useSearchParams } from 'react-router-dom';
 
 type TPaginatorProps = {
-  itemArray: Product[];
+  itemArray: IProduct[];
   categoryTitle: string;
 };
 
@@ -68,7 +68,7 @@ export const Paginator:FC<TPaginatorProps> = ({
       <div className={generalStyles}>
         <div className={cardLayoutStyles}>
           {renderArray.map(item => (
-            <CardItem product={item}/>
+            <CardItem product={item} key={item.id}/>
           ))}
         </div>
         <div className='flex resp-[my/16/16]'>
