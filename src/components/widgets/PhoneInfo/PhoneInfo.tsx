@@ -6,7 +6,6 @@ import { Description } from './Description/Description';
 import { TechDescription } from './Description/TechDescription';
 import { PhotoSwipe } from './Description/PhotoSwipe';
 import { images } from './assets/Images';
-import { EPhoneColors } from '~types/EPhoneColors';
 import { Link, useNavigate } from 'react-router-dom';
 
 type TPhonesProps = {
@@ -23,7 +22,7 @@ export const Phones: FC<TPhonesProps> = ({ phone }) => {
     setSelectedCapacity(capacity);
   };
 
-  const handleColorChange = (color: EPhoneColors) => {
+  const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
 
@@ -53,7 +52,7 @@ export const Phones: FC<TPhonesProps> = ({ phone }) => {
           </button>
         </Link>
         <img src="src/assets/icons/arrow-right.svg" alt="arrow right button" />
-        <div>{phone.phoneId}</div>
+        <div>{phone.id}</div>
       </div>
       <div className="resp-[pt/40/40] resp-[pb/16/16]">
         <button
@@ -65,7 +64,7 @@ export const Phones: FC<TPhonesProps> = ({ phone }) => {
         </button>
       </div>
       <h2 className="title-2 resp-[font/32/22] flex items-center justify-start resp-[pb/40/32]">
-        {`${phone.phoneName} ` + ` ${selectedCapacity}` + ` ${selectedColor}`}
+        {`${phone.name} ` + ` ${selectedCapacity}` + ` ${selectedColor}`}
       </h2>
       <div className="resp-[grid-col/0,3/1] grid-cols-1 sm:grid-cols-2 gap-x-[30px] gap-y-[65px]">
         <PhotoSwipe images={images} />

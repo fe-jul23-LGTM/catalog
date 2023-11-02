@@ -1,13 +1,14 @@
 export interface IPhone {
-  phoneId: number;
-  phoneName: string;
+  id: number;
+  category: string;
+  itemId: string;
+  name: string;
+  fullPrice: number;
   price: number;
-  imageSrc: string;
-  priceWithDiscount?: number;
-  screenSize: number;
-  typeOfDisplay: string;
-  capacity: number;
-  ram: number;
-  screenResolution: string;
-  processor: string;
+  screen: string;
+  capacity: string;
+  color: string;
+  ram: string;
+  year: number;
+  image: string;
 }

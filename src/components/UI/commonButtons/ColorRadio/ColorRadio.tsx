@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { EPhoneColors, TColor } from '~types/EPhoneColors';
 
 type TColorRadioProps = {
-  colors: TColor[];
+  colors: string[];
   selectedColor: string;
-  onSelect: (color: EPhoneColors) => void;
+  onSelect: (color: string) => void;
 };
 
 export const ColorRadio: FC<TColorRadioProps> = ({
@@ -19,23 +18,23 @@ export const ColorRadio: FC<TColorRadioProps> = ({
           <input
             type="radio"
             name="color"
-            value={color.code}
-            checked={selectedColor === color.code}
-            onChange={() => onSelect(color.name)}
+            value={color}
+            checked={selectedColor === color}
+            onChange={() => onSelect(color)}
             className="hidden"
           />
           <div
-            className={`flex items-center justify-center resp-[width/32/32] resp-[height/32/32] rounded-full border-2  ${
-              selectedColor === color.code
+            className={`flex items-center justify-center resp-[w/32/32] resp-[h/32/32] rounded-full border-2  ${
+              selectedColor === color
                 ? 'border-black' + 'dark:border-dark-white'
                 : 'border-elements dark:border-dark-elements ' +
                   'hover:border-icons dark:hover:border-dark-secondary'
             }`}
           >
             <div
-              className={`resp-[width/24/24] resp-[height/24/24] rounded-full`}
+              className={`w-6 h-6 rounded-full`}
               style={{
-                backgroundColor: color.code,
+                backgroundColor: color,
               }}
             ></div>
           </div>

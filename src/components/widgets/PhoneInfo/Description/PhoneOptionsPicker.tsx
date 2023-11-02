@@ -1,18 +1,16 @@
 /* eslint-disable max-len */
-import { FC, useCallback, useState } from 'react';
+import { FC } from 'react';
 import { Button } from '~components/UI/button';
 import { IPhone } from '~types/IPhone';
 import { ColorRadio } from '~components/UI/commonButtons/ColorRadio';
 import { FavouriteButton } from '~components/UI/commonButtons/FavouriteButton';
-import { EPhoneColors } from '~types/EPhoneColors';
-import { colors } from './data';
 
 type TPhoneOptionsPickerProps = {
   phone: IPhone;
   selectedCapacity: string;
   handleFavouriteClick: (value: string) => void;
   selectedColor: string;
-  handleColorChange: (value: EPhoneColors) => void;
+  handleColorChange: (value: string) => void;
 };
 
 export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({
@@ -25,13 +23,13 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({
   return (
     <section className="">
       <div className="flex sm:flex-row-reverse justify-between flex-col-reverse">
-        <div className="text-right text-secondary items-start dark:text-dark-white">{`ID: ${phone.phoneId}`}</div>
+        <div className="text-right text-secondary items-start dark:text-dark-white">{`ID: ${phone.id}`}</div>
         <span>
           <p className="text-left text-secondary dark:text-dark-secondary pb-8">
             Available colors
           </p>
           <ColorRadio
-            colors={colors}
+            colors={phone.colorsAvailable}
             selectedColor={selectedColor}
             onSelect={handleColorChange}
           />
@@ -81,11 +79,15 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({
       <div className="block border-b-[1px] border-elements resp-[my/24/24]"></div>
       <div className="flex-row resp-[pb/16/16]">
         <div className="flex flex-row resp-[gap/8/8]">
-          <p className="title-3">{`$${phone.price}`}</p>
-          {phone.priceWithDiscount && (
-            <p className="title-3 font-normal text-secondary dark:text-dark-secondary">
-              <del>{`$${phone.price}`}</del>
-            </p>
+          {phone.priceDiscount ? (
+            <>
+              <p className="title-3">{`$${phone.priceDiscount}`}</p>
+              <p className="title-3 font-normal text-secondary dark:text-dark-secondary">
+                <del>{`$${phone.priceRegular}`}</del>
+              </p>
+            </>
+          ) : (
+            <p className="title-3">{`$${phone.priceRegular}`}</p>
           )}
         </div>
       </div>
@@ -98,7 +100,7 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({
       <div className=" border-b-[1px] border-elements resp-[my/8/8]"></div>
       <div className="flex justify-between font-normal resp-[font/12/12] resp-[my/8/8]">
         <p className="text-secondary dark:text-dark-secondary">Screen</p>
-        <p className="text-primary dark:text-dark-white">{`${phone.screenSize}” ${phone.typeOfDisplay}`}</p>
+        <p className="text-primary dark:text-dark-white">{`${phone.screen}`}</p>
       </div>
       <div className="flex justify-between font-normal resp-[font/12/12]">
         <p className="text-secondary dark:text-dark-secondary">Capacity</p>
@@ -106,7 +108,7 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({
       </div>
       <div className="flex justify-between font-normal resp-[font/12/12] resp-[my/8/8]">
         <p className="text-secondary dark:text-dark-secondary">Resolution</p>
-        <p className="text-primary dark:text-dark-white">{`${phone.screenResolution}`}</p>
+        <p className="text-primary dark:text-dark-white">{`${phone.resolution}`}</p>
       </div>
       <div className="flex justify-between font-normal resp-[font/12/12]">
         <p className="text-secondary dark:text-dark-secondary">Processor</p>
