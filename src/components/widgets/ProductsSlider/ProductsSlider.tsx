@@ -6,274 +6,201 @@ import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 import { CardItem } from '../CardItem';
+import { Product } from '~types/Product';
 
 type TProductsSliderProps = {
-  productsList?: [];
+  productsList: Product[];
   sliderName: string;
 };
 
 const randomProducts = [
   {
-    phoneId: 1,
+    id: 8,
     category: 'phones',
-    phone: 'apple-iphone-7-32gb-black',
-    itemId: 'apple-iphone-7-32gb-black',
-    phoneName: 'Apple iPhone 7 32 GB Black',
-    fullPrice: 400,
-    price: 375,
-    screenSize: 4.7,
-    typeOfDisplay: 'IPS',
-    capacity: 32,
-    color: 'black',
-    ram: 2,
-    year: 2016,
-    imageSrc: 'img/phones/apple-iphone-7/black/00.jpg',
-  },
-  {
-    phoneId: 2,
-    category: 'phones',
-    phone: 'apple-iphone-7-plus-32gb-black',
-    itemId: 'apple-iphone-7-plus-32gb-black',
-    phoneName: 'Apple iPhone 7 Plus 32GB Black',
-    fullPrice: 540,
-    price: 500,
-    screenSize: 5.5,
-    typeOfDisplay: 'IPS',
-    capacity: 32,
-    color: 'black',
-    ram: 3,
-    year: 2016,
-    imageSrc: 'img/phones/apple-iphone-7-plus/black/00.jpg',
-  },
-  {
-    phoneId: 3,
-    category: 'phones',
-    phone: 'apple-iphone-8-64gb-gold',
-    itemId: 'apple-iphone-8-64gb-gold',
-    phoneName: 'Apple iPhone 8 64GB Gold',
-    fullPrice: 600,
-    price: 550,
-    screenSize: 4.7,
-    typeOfDisplay: 'IPS',
-    capacity: 64,
-    color: 'gold',
-    ram: 2,
-    year: 2017,
-    imageSrc: 'img/phones/apple-iphone-8/gold/00.jpg',
-  },
-  {
-    phoneId: 4,
-    category: 'phones',
-    phone: 'apple-iphone-11-64gb-black',
-    itemId: 'apple-iphone-11-64gb-black',
-    phoneName: 'Apple iPhone 11 64GB Black',
-    fullPrice: 932,
-    price: 880,
-    screenSize: 6.1,
-    typeOfDisplay: 'IPS',
-    capacity: 64,
-    color: 'black',
-    ram: 4,
-    year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11/black/00.jpg',
-  },
-  {
-    phoneId: 5,
-    category: 'phones',
-    phone: 'apple-iphone-11-128gb-yellow',
-    itemId: 'apple-iphone-11-128gb-yellow',
-    phoneName: 'Apple iPhone 11 128GB Yellow',
-    fullPrice: 1100,
-    price: 1050,
-    screenSize: 6.1,
-    typeOfDisplay: 'IPS',
-    capacity: 128,
-    color: 'yellow',
-    ram: 4,
-    year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11/yellow/00.jpg',
-  },
-  {
-    phoneId: 6,
-    category: 'phones',
-    phone: 'apple-iphone-11-256gb-green',
-    itemId: 'apple-iphone-11-256gb-green',
-    phoneName: 'Apple iPhone 11 256GB Green',
-    fullPrice: 1172,
-    price: 1115,
-    screenSize: 6.1,
-    typeOfDisplay: 'IPS',
-    capacity: 256,
-    color: 'green',
-    ram: 4,
-    year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11/green/00.jpg',
-  },
-  {
-    phoneId: 7,
-    category: 'phones',
-    phone: 'apple-iphone-11-pro-64gb-gold',
-    itemId: 'apple-iphone-11-pro-64gb-gold',
-    phoneName: 'Apple iPhone 11 Pro 64GB Gold',
-    fullPrice: 1312,
-    price: 1270,
-    screenSize: 5.8,
-    typeOfDisplay: 'OLED',
-    capacity: 64,
-    color: 'gold',
-    ram: 4,
-    year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11-pro/gold/00.jpg',
-  },
-  {
-    phoneId: 8,
-    category: 'phones',
-    phone: 'apple-iphone-11-pro-256gb-midnightgreen',
     itemId: 'apple-iphone-11-pro-256gb-midnightgreen',
-    phoneName: 'Apple iPhone 11 Pro 256GB Midnight green',
+    name: 'Apple iPhone 11 Pro 256GB Midnight green',
     fullPrice: 1640,
     price: 1570,
-    screenSize: 5.8,
-    typeOfDisplay: 'OLED',
-    capacity: 256,
+    screen: "5.8' OLED",
+    capacity: '256GB',
     color: 'midnightgreen',
-    ram: 4,
+    ram: '4GB',
     year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11-pro/midnightgreen/00.jpg',
+    image: 'img/phones/apple-iphone-11-pro/midnightgreen/00.webp',
   },
   {
-    phoneId: 9,
+    id: 9,
     category: 'phones',
-    phone: 'apple-iphone-11-pro-512gb-silver',
     itemId: 'apple-iphone-11-pro-512gb-silver',
-    phoneName: 'Apple iPhone 11 Pro 512GB Silver',
+    name: 'Apple iPhone 11 Pro 512GB Silver',
     fullPrice: 1880,
     price: 1780,
-    screenSize: 5.8,
-    typeOfDisplay: 'OLED',
-    capacity: 512,
+    screen: "5.8' OLED",
+    capacity: '512GB',
     color: 'silver',
-    ram: 4,
+    ram: '4GB',
     year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11-pro/silver/00.jpg',
+    image: 'img/phones/apple-iphone-11-pro/silver/00.webp',
   },
   {
-    phoneId: 10,
+    id: 10,
     category: 'phones',
-    phone: 'apple-iphone-11-pro-max-64gb-spacegray',
     itemId: 'apple-iphone-11-pro-max-64gb-spacegray',
-    phoneName: 'Apple iPhone 11 Pro Max 64GB Spacegray',
+    name: 'Apple iPhone 11 Pro Max 64GB Spacegray',
     fullPrice: 1480,
     price: 1400,
-    screenSize: 6.5,
-    typeOfDisplay: 'OLED',
-    capacity: 64,
+    screen: "6.5' OLED",
+    capacity: '64GB',
     color: 'spacegray',
-    ram: 4,
+    ram: '4GB',
     year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11-pro-max/spacegray/00.jpg',
+    image: 'img/phones/apple-iphone-11-pro-max/spacegray/00.webp',
   },
   {
-    phoneId: 11,
+    id: 11,
     category: 'phones',
-    phone: 'apple-iphone-11-pro-max-256gb-gold',
     itemId: 'apple-iphone-11-pro-max-256gb-gold',
-    phoneName: 'Apple iPhone 11 Pro Max 256GB Gold',
+    name: 'Apple iPhone 11 Pro Max 256GB Gold',
     fullPrice: 1776,
     price: 1680,
-    screenSize: 6.5,
-    typeOfDisplay: 'OLED',
-    capacity: 256,
+    screen: "6.5' OLED",
+    capacity: '256GB',
     color: 'gold',
-    ram: 4,
+    ram: '4GB',
     year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11-pro-max/gold/00.jpg',
+    image: 'img/phones/apple-iphone-11-pro-max/gold/00.webp',
   },
   {
-    phoneId: 12,
+    id: 12,
     category: 'phones',
-    phone: 'apple-iphone-11-pro-max-512gb-spacegray',
     itemId: 'apple-iphone-11-pro-max-512gb-spacegray',
-    phoneName: 'Apple iPhone 11 Pro Max 512GB Spacegray',
+    name: 'Apple iPhone 11 Pro Max 512GB Spacegray',
     fullPrice: 2020,
     price: 1930,
-    screenSize: 6.5,
-    typeOfDisplay: 'OLED',
-    capacity: 512,
+    screen: "6.5' OLED",
+    capacity: '512GB',
     color: 'spacegray',
-    ram: 4,
+    ram: '4GB',
     year: 2019,
-    imageSrc: 'img/phones/apple-iphone-11-pro-max/spacegray/00.jpg',
+    image: 'img/phones/apple-iphone-11-pro-max/spacegray/00.webp',
   },
   {
-    phoneId: 13,
+    id: 13,
     category: 'phones',
-    phone: 'apple-iphone-xr-64gb-red',
     itemId: 'apple-iphone-xr-64gb-red',
-    phoneName: 'Apple iPhone XR 64GB Red',
+    name: 'Apple iPhone XR 64GB Red',
     fullPrice: 712,
     price: 670,
-    screenSize: 6.1,
-    typeOfDisplay: 'IPS',
-    capacity: 64,
+    screen: "6.1' IPS",
+    capacity: '64GB',
     color: 'red',
-    ram: 3,
+    ram: '3GB',
     year: 2018,
-    imageSrc: 'img/phones/apple-iphone-xr/red/00.jpg',
+    image: 'img/phones/apple-iphone-xr/red/00.webp',
   },
   {
-    phoneId: 14,
+    id: 14,
     category: 'phones',
-    phone: 'apple-iphone-xr-128gb-white',
     itemId: 'apple-iphone-xr-128gb-white',
-    phoneName: 'Apple iPhone XR 128GB White',
+    name: 'Apple iPhone XR 128GB White',
     fullPrice: 880,
     price: 815,
-    screenSize: 6.1,
-    typeOfDisplay: 'IPS',
-    capacity: 128,
+    screen: "6.1' IPS",
+    capacity: '128GB',
     color: 'white',
-    ram: 3,
+    ram: '3GB',
     year: 2018,
-    imageSrc: 'img/phones/apple-iphone-xr/white/00.jpg',
+    image: 'img/phones/apple-iphone-xr/white/00.webp',
   },
   {
-    phoneId: 15,
+    id: 15,
     category: 'phones',
-    phone: 'apple-iphone-xs-64gb-spacegray',
     itemId: 'apple-iphone-xs-64gb-spacegray',
-    phoneName: 'Apple iPhone XS 64GB Spacegray',
+    name: 'Apple iPhone XS 64GB Spacegray',
     fullPrice: 760,
     price: 720,
-    screenSize: 5.8,
-    typeOfDisplay: 'OLED',
-    capacity: 64,
+    screen: "5.8' OLED",
+    capacity: '64GB',
     color: 'spacegray',
-    ram: 4,
+    ram: '4GB',
     year: 2018,
-    imageSrc: 'img/phones/apple-iphone-xs/spacegray/00.jpg',
+    image: 'img/phones/apple-iphone-xs/spacegray/00.webp',
   },
   {
-    phoneId: 16,
+    id: 16,
     category: 'phones',
-    phone: 'apple-iphone-xs-max-64gb-gold',
     itemId: 'apple-iphone-xs-max-64gb-gold',
-    phoneName: 'Apple iPhone XS Max 64GB Gold',
+    name: 'Apple iPhone XS Max 64GB Gold',
     fullPrice: 960,
     price: 900,
-    screenSize: 6.5,
-    typeOfDisplay: 'OLED',
-    capacity: 64,
+    screen: "6.5' OLED",
+    capacity: '64GB',
     color: 'gold',
-    ram: 4,
+    ram: '4GB',
     year: 2018,
-    imageSrc: 'img/phones/apple-iphone-xs-max/gold/00.jpg',
+    image: 'img/phones/apple-iphone-xs-max/gold/00.webp',
+  },
+  {
+    id: 17,
+    category: 'phones',
+    itemId: 'apple-iphone-xs-max-256gb-silver',
+    name: 'Apple iPhone XS Max 256GB Silver',
+    fullPrice: 1080,
+    price: 1000,
+    screen: "6.5' OLED",
+    capacity: '256GB',
+    color: 'silver',
+    ram: '4GB',
+    year: 2018,
+    image: 'img/phones/apple-iphone-xs-max/silver/00.webp',
+  },
+  {
+    id: 18,
+    category: 'phones',
+    itemId: 'apple-iphone-7-32gb-gold',
+    name: 'Apple iPhone 7 32GB Gold',
+    fullPrice: 400,
+    price: 375,
+    screen: "4.7' IPS",
+    capacity: '32GB',
+    color: 'gold',
+    ram: '2GB',
+    year: 2016,
+    image: 'img/phones/apple-iphone-7/gold/00.webp',
+  },
+  {
+    id: 19,
+    category: 'phones',
+    itemId: 'apple-iphone-7-plus-32gb-silver',
+    name: 'Apple iPhone 7 Plus 32GB Silver',
+    fullPrice: 540,
+    price: 500,
+    screen: "5.5' IPS",
+    capacity: '32GB',
+    color: 'silver',
+    ram: '3GB',
+    year: 2016,
+    image: 'img/phones/apple-iphone-7-plus/silver/00.webp',
+  },
+  {
+    id: 20,
+    category: 'phones',
+    itemId: 'apple-iphone-8-64gb-spacegray',
+    name: 'Apple iPhone 8 64GB Space Gray',
+    fullPrice: 600,
+    price: 550,
+    screen: "4.7' IPS",
+    capacity: '64GB',
+    color: 'spacegray',
+    ram: '2GB',
+    year: 2017,
+    image: 'img/phones/apple-iphone-8/spacegray/00.webp',
   },
 ];
 
 export const ProductsSlider: FC<TProductsSliderProps> = ({
   productsList = randomProducts,
-  sliderName,
+  sliderName = 'Random slider name',
 }) => {
   const buttonStyles = `resp-[width/32/32] resp-[height/32/32]
     flex items-center justify-center border
@@ -285,12 +212,11 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
     dark:hover:bg-dark-icons
     disabled:fill-icons
     dark:fill-dark-white dark:disabled:fill-dark-icons`;
-  const buttonLeftStyles = `swipe-left ${buttonStyles}`;
-  const buttonRightStyles = `swipe-right ${buttonStyles}`;
+  const buttonLeftStyles = `swipe-prod-left ${buttonStyles}`;
+  const buttonRightStyles = `swipe-prod-right ${buttonStyles}`;
 
   return (
-    <section className='py-[28px] sm:py-[32px] lg:py-[40px]'>
-      <Swiper
+    <Swiper
       slidesPerView={'auto'}
       spaceBetween={16}
       breakpoints={{
@@ -299,10 +225,10 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
         },
       }}
       autoHeight
-      navigation={{ nextEl: '.swipe-right', prevEl: '.swipe-left' }}
+      navigation={{ nextEl: '.swipe-prod-right', prevEl: '.swipe-prod-left' }}
       modules={[Navigation]}
-      className="mySwiper !flex !overflow-visible lg:!overflow-x-hidden
-      flex-col-reverse resp-[gap-y/24/24]"
+      className="mySwiper !flex !overflow-y-visible
+      flex-col-reverse resp-[gap-y/24/24] !resp-[py/40/28]"
     >
       <div className="flex justify-between items-center resp-[gap-x/72/72]">
         <p className="title-2">{sliderName}</p>
@@ -362,12 +288,14 @@ export const ProductsSlider: FC<TProductsSliderProps> = ({
         </div>
       </div>
 
-      {productsList.map(phone => (
-        <SwiperSlide key={phone.phoneId} className="!shrink lg:!shrink-0">
-          <CardItem phone={phone} />
+      {productsList.map(product => (
+        <SwiperSlide
+          key={product.itemId}
+          className="resp-[w-max/272/212]"
+        >
+          <CardItem product={product} />
         </SwiperSlide>
       ))}
     </Swiper>
-    </section>
   );
 };
