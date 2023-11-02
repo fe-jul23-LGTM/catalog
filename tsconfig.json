@@ -63,6 +63,12 @@
       "~helpers/*": [
         "./helpers/*"
       ],
+      "~public": [
+        "../public"
+      ],
+      "~public/*": [
+        "../public/*"
+      ],
     }
   },
   "include": [

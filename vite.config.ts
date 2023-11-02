@@ -15,6 +15,7 @@ export default defineConfig({
       '~context': path.resolve('src/context'),
       '~types': path.resolve('types'),
       '~helpers': path.resolve('src/helpers'),
+      '~public': path.resolve('public'),
     },
   },
 });

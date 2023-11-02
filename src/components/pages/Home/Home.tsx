@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { FC } from 'react';
+
 import { BannerSlider } from '~components/widgets/BannerSlider';
 import { ProductsSlider } from '~components/widgets/ProductsSlider';
 import { ShopByCategory } from '~components/widgets/ShopByCategory';
