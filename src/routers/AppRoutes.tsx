@@ -23,11 +23,11 @@ export const AppRoutes: FC = () => {
           </Route>
           <Route path="/tablets">
             <Route index element={<Tablets />} />
-            <Route path=":tabletId" element={<h1>tablet about</h1>} />
+            <Route path=":phoneId" element={<PhoneInfo />} />
           </Route>
           <Route path="/accessories">
             <Route index element={<Accessories />} />
-            <Route path=":accessoryId" element={<h1>accessory about</h1>} />
+            <Route path=":phoneId" element={<PhoneInfo />} />
           </Route>
           <Route
             path="/favourites"
