@@ -12,7 +12,7 @@ type TButtonProps = {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
-  productId: number;
+  productId?: number;
 };
 
 export const Button: FC<TButtonProps> = ({
@@ -21,7 +21,7 @@ export const Button: FC<TButtonProps> = ({
   children,
   disabled,
   className = '',
-  productId,
+  productId = 0,
 }) => {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -76,7 +76,7 @@ export const Button: FC<TButtonProps> = ({
   return (
     <button
       disabled={disabled}
-      onClick={() => handleClickToCart(productId, products)}
+      onClick={() => handleClickToCart(productId ?? 0, products)}
       className={`${generalStyles} ${className}`}
     >
       {children}

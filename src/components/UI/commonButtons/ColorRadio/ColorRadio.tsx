@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 type TColorRadioProps = {
   colors: string[];
-  selectedColor: string;
-  children: ReactNode;
+  selectedColor?: string;
+  children?: ReactNode;
   handleColorChange: (value: string) => string;
 };
 

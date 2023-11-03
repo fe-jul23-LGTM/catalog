@@ -9,7 +9,6 @@ type TTechDescriptionProps = {
 
 export const TechDescription: FC<TTechDescriptionProps> = ({
   phone,
-  selectedCapacity,
 }) => {
   return (
     <>
@@ -45,7 +44,7 @@ export const TechDescription: FC<TTechDescriptionProps> = ({
         <div className="flex justify-between text-xs font-normal resp-[font/12/12]">
           <p className="text-secondary dark:text-dark-secondary">Cell</p>
           <p className="text-primary dark:text-dark-white">
-            {phone.cell.join(' ')}
+            {phone?.cell?.join(' ') ?? []}
           </p>
         </div>
       </div>
