@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
-import { FC, ReactNode, useEffect, useState } from 'react';
+import { FC, ReactNode, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { IProduct } from '~types/Product';
 import products from '~public/initial_data/products.json';
+import { ThemeContext } from '~context/Theme';
 
 type TButtonProps = {
   children: ReactNode;
@@ -24,6 +25,7 @@ export const Button: FC<TButtonProps> = ({
   productId,
 }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const { setItemsInCartCount } = useContext(ThemeContext);
 
   useEffect(() => {
     const itemsCartJSON = localStorage.getItem('itemsToBuy');
@@ -51,6 +53,7 @@ export const Button: FC<TButtonProps> = ({
       const updatedItemsCart = itemsCart.filter(product => product.id !== id);
 
       localStorage.setItem('itemsToBuy', JSON.stringify(updatedItemsCart));
+      setItemsInCartCount(updatedItemsCart.length);
     }
 
     if (!productInCart) {
@@ -60,6 +63,7 @@ export const Button: FC<TButtonProps> = ({
         itemsCart.push(productToBuy);
 
         localStorage.setItem('itemsToBuy', JSON.stringify(itemsCart));
+        setItemsInCartCount(itemsCart.length);
       }
     }
   };

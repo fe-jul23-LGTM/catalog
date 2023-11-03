@@ -17,13 +17,10 @@ import { handleTitleChange } from '~helpers/functions';
 import style from './Header.module.css';
 
 export const Header: FC = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme, favoriteCount, setFavoriteCount, itemsInCartCount, setItemsInCartCount } = useContext(ThemeContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const urlLocation = useLocation();
-
-  const [favorites, setFavorites] = useState([]);
-  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const favoritesJSON = localStorage.getItem('favorites');
@@ -32,9 +29,9 @@ export const Header: FC = () => {
     const itemsCartJSON = localStorage.getItem('itemsToBuy');
     const itemsCart = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
 
-    setFavorites(parsedFavorites);
-    setItems(itemsCart);
-  }, [favorites, items]);
+    setFavoriteCount(parsedFavorites.length);
+    setItemsInCartCount(itemsCart.length);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -96,10 +93,10 @@ export const Header: FC = () => {
               onClick={() => handleTitleChange('Favourites')}
               to="/favourites"
             >
-              {!!favorites.length && (
+              {!!favoriteCount && (
                 <div className="absolute text-white right-[14px] top-[15px]">
                   <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
-                    {favorites.length}
+                    {favoriteCount}
                   </span>
                 </div>
               )}
@@ -125,10 +122,10 @@ export const Header: FC = () => {
               onClick={() => handleTitleChange('Cart')}
               className={favoriteNCartStyles}
             >
-              {!!items.length && (
+              {!!itemsInCartCount && (
                 <div className="absolute text-white right-[14px] top-[15px]">
                   <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
-                    {items.length}
+                    {itemsInCartCount}
                   </span>
                 </div>
               )}
