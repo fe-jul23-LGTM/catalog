@@ -41,7 +41,7 @@ export const ShopByCategory: FC = () => {
               className="resp-[mb/24/24] transform hover:scale-105 transition-transform duration-300"
             />
             <h4 className="title-4 resp-[mb/4/4]">{category.title}</h4>
-            <p>{`${category.itemsCount} models`}</p>
+            <p className='dark:text-dark-secondary'>{`${category.itemsCount} models`}</p>
           </Link>
         ))}
       </div>
