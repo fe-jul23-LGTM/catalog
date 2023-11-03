@@ -52,11 +52,10 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({ phone }) => {
           {phone.capacityAvailable.map(capacity => (
             <Link to={`/phones/${handleCapacityChange(capacity)}`}>
               <Button
-                isSelect
                 className={
                   phone.capacity === capacity
                     ? 'bg-primary resp-[py/7/7] resp-[px/8/8] text-white border-[2px] border-icons dark:text-dark-white dark:hover-bg-dark-accent-hover dark:shadow-none dark:bg-dark-accent'
-                    : 'selected'
+                    : 'button-select'
                 }
                 onClick={() => {
                   handleCapacityChange(capacity);

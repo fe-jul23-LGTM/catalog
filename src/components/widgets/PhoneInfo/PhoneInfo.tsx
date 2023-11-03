@@ -29,6 +29,7 @@ export const PhoneInfo: FC<TPhonesProps> = () => {
       phone = accessories.find(product => product.id === phoneId) ?? accessories[0];
     }
   }
+  console.log(tempId);
 
   if (!phone) {
     return <div>Loading...</div>;
