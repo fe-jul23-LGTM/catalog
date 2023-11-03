@@ -2,6 +2,10 @@
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+
+import srcI from './assets/Banner.png';
+import srcI2 from './assets/SmallBanner.png';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -51,13 +55,13 @@ export const BannerSlider: FC = () => {
               </button>
 
               <img
-                src="../src/components/widgets/BannerSlider/assets/Banner.png"
+                src={srcI}
                 alt="Banner"
                 className={bigImageStyles}
               />
 
               <img
-                src="../src/components/widgets/BannerSlider/assets/SmallBanner.png"
+                src={srcI2}
                 alt="Banner"
                 className={smallImageStyles}
               />
