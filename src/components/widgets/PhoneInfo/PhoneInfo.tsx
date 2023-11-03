@@ -6,10 +6,12 @@ import { Description } from './Description/Description';
 import { TechDescription } from './Description/TechDescription';
 import { PhotoSwipe } from './Description/PhotoSwipe';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import products from '~public/initial_data/products.json';
 import phones from '~public/initial_data/phones.json';
 import tablets from '~public/initial_data/tablets.json';
 import accessories from '~public/initial_data/accessories.json';
 import { IPhoneDetailed } from '~types/IPhoneDetailed';
+import { ProductsSlider } from '../ProductsSlider';
 
 type TPhonesProps = object;
 
@@ -46,7 +48,7 @@ export const PhoneInfo: FC<TPhonesProps> = () => {
   };
 
   return (
-    <div className="resp-[px/100/16] resp-[w/1136/288]">
+    <div>
       <div className="flex flex-row gap-x-[8px] pt-[24px]">
         <Link to={`/`}>
           <button className="flex flex-row items-center gap-[4px]">
@@ -85,6 +87,8 @@ export const PhoneInfo: FC<TPhonesProps> = () => {
         <Description description={phone.description} />
         <TechDescription phone={phone} />
       </div>
+
+      <ProductsSlider sliderName='You may also like' productsList={products}/>
     </div>
   );
 };
