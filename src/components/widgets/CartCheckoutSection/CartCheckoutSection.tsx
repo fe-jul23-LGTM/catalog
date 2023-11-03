@@ -4,74 +4,34 @@ import { CartItem } from '../CartItem';
 import { Button } from '~components/UI/button';
 import '~assets/icons/arrow-down.svg';
 import { Link } from 'react-router-dom';
+import { IProduct } from '~types/Product';
 
-type TCartCheckoutSection = {
-  usersProductsList?: [];
-};
+export const CartCheckoutSection: FC = () => {
+  const [isPressed, setIsPressed] = useState(false);
 
-const randomProductsList = [
-  {
-    phoneId: 1,
-    category: 'phones',
-    phone: 'apple-iphone-7-32gb-black',
-    itemId: 'apple-iphone-7-32gb-black',
-    phoneName: 'Apple iPhone 7 32GB Black',
-    fullPrice: 400,
-    price: 375,
-    screenSize: 4.7,
-    typeOfDisplay: 'IPS',
-    capacity: 32,
-    color: 'black',
-    ram: 2,
-    year: 2016,
-    imageSrc: 'src/components/widgets/CartCheckoutSection/assets/image1.png',
-  },
-  {
-    phoneId: 2,
-    category: 'phones',
-    phone: 'apple-iphone-7-plus-32gb-black',
-    itemId: 'apple-iphone-7-plus-32gb-black',
-    phoneName: 'Apple iPhone 7 Plus 32GB Black',
-    fullPrice: 540,
-    price: 500,
-    screenSize: 5.5,
-    typeOfDisplay: 'IPS',
-    capacity: 32,
-    color: 'black',
-    ram: 3,
-    year: 2016,
-    imageSrc: 'src/components/widgets/CartCheckoutSection/assets/image2.png',
-  },
-  {
-    phoneId: 3,
-    category: 'phones',
-    phone: 'apple-iphone-8-64gb-gold',
-    itemId: 'apple-iphone-8-64gb-gold',
-    phoneName: 'Apple iPhone 8 64GB Gold',
-    fullPrice: 600,
-    price: 550,
-    screenSize: 4.7,
-    typeOfDisplay: 'IPS',
-    capacity: 64,
-    color: 'gold',
-    ram: 2,
-    year: 2017,
-    imageSrc: 'src/components/widgets/CartCheckoutSection/assets/image3.png',
-  },
-];
+  const itemsCartJSON = localStorage.getItem('itemsToBuy');
+  const itemsCart: IProduct[] = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
 
-export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
-  usersProductsList = randomProductsList,
-}) => {
   const [productsList, setProductsList] = useState(
-    usersProductsList.map(product => ({
+    itemsCart.map(product => ({
       ...product,
       count: 1,
     })),
   );
   const deleteFromCart = (id: number) => {
-    setProductsList(prevProducts =>
-      prevProducts.filter(product => product.phoneId !== id));
+    setIsPressed(!isPressed);
+
+    const productInCart = itemsCart.find(product => product.id === id);
+
+    if (productInCart) {
+      const updatedItemsCart = itemsCart.filter(product => product.id !== id);
+
+      localStorage.setItem('itemsToBuy', JSON.stringify(updatedItemsCart));
+
+      if (window.location.hash === '#/cart') {
+        window.location.reload();
+      }
+    }
   };
   const totalPrice = productsList.reduce((totalSum, elem) => {
     return totalSum + elem.price * elem.count;
@@ -86,7 +46,7 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
   const changeCount = (id: number, newCount: number) => {
     setProductsList(prevProducts =>
       prevProducts.map(product => {
-        if (product.phoneId === id) {
+        if (product.id === id) {
           product.count = newCount;
         }
 
@@ -133,6 +93,7 @@ export const CartCheckoutSection: FC<TCartCheckoutSection> = ({
               </div>
 
               <Button
+                productId={0}
                 isAdd
                 className="resp-[height/48/48] resp-[width/320/320]"
               >

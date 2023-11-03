@@ -55,10 +55,6 @@ export const FavouriteButton: FC<TFavouriteButtonProps> = ({
       );
 
       localStorage.setItem('favorites', JSON.stringify(updatedFavourites));
-
-      if (window.location.hash === '#/favourites') {
-        window.location.reload();
-      }
     }
 
     if (!productInFavourites) {

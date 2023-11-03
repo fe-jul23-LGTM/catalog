@@ -51,7 +51,7 @@ export const CardItem: React.FC<TPhoneCardProps> = ({ product }) => {
       </Link>
 
       <div className="flex justify-between gap-x-[8px]">
-        <Button isAdd> Add to cart </Button>
+        <Button isAdd productId={product.id} > Add to cart </Button>
         <FavouriteButton className='w-[60px]' productId={product.id} />
       </div>
     </div>

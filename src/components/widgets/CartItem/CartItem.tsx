@@ -1,9 +1,10 @@
+/* eslint-disable no-shadow */
 /* eslint-disable max-len */
 import { FC } from 'react';
-import { IPhone } from '~types/IPhone';
+import { IProduct } from '~types/Product';
 
 type TCartItemProps = {
-  product: IPhone & { count: number };
+  product: IProduct & { count: number };
   setItemsCount?: (id: number, newCount: number) => void;
   onDelete?: (id: number) => void;
 };
@@ -13,7 +14,7 @@ export const CartItem: FC<TCartItemProps> = ({
   setItemsCount = () => {},
   onDelete = () => {},
 }) => {
-  const { phoneId, imageSrc, phoneName, price, count } = product;
+  const { id, image, name, price, count } = product;
   const buttonCounterClass = `resp-[width/32/32] resp-[height/32/32]
   flex items-center justify-center border
   hover:border-primary hover:text-gray-white
@@ -28,19 +29,19 @@ export const CartItem: FC<TCartItemProps> = ({
   dark:fill-dark-white dark:disabled:fill-dark-icons`;
 
   const handlePlusClicked = () => {
-    setItemsCount(phoneId, count + 1);
+    setItemsCount(id, count + 1);
   };
   const handleMinusClicked = () => {
-    setItemsCount(phoneId, count - 1);
+    setItemsCount(id, count - 1);
   };
 
   return (
     <div className="flex flex-col items-stretch sm:flex-row resp-[gap-x/24/24] resp-[gap-y/16/16] sm:justify-between border border-elements dark:border-none dark:bg-dark-surface-1 px-[16px] py-[16px] lg:py-[24px] lg:px-[24px]">
       <div className="flex items-center resp-[gap-x/24/24]">
         <button
-          onClick={() => onDelete(phoneId)}
-          className='fill-icons dark:fill-dark-icons hover:fill-primary hover:dark:fill-dark-white'
-          >
+          onClick={() => onDelete(id)}
+          className="fill-icons dark:fill-dark-icons hover:fill-primary hover:dark:fill-dark-white"
+        >
           <svg
             width="16"
             height="16"
@@ -54,8 +55,12 @@ export const CartItem: FC<TCartItemProps> = ({
             />
           </svg>
         </button>
-        <img src={imageSrc} alt={phoneName} />
-        <p className="title-5">{phoneName}</p>
+        <img
+          src={image}
+          alt={name}
+          className="resp-[w-max/80/66] resp-[h-max/80/66]"
+        />
+        <p className="title-5">{name}</p>
       </div>
       <div className="flex justify-between sm:justify-end flex-grow items-center sm:resp-[gap-x/24/24]">
         <div className="flex items-center">
@@ -96,7 +101,9 @@ export const CartItem: FC<TCartItemProps> = ({
             </svg>
           </button>
         </div>
-        <p className="title-3 sm:resp-[width/80/80] sm:text-right">{`$${price * count}`}</p>
+        <p className="title-3 sm:resp-[width/80/80] sm:text-right">{`$${
+          price * count
+        }`}</p>
       </div>
     </div>
   );

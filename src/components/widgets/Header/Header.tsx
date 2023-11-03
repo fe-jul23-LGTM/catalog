@@ -22,6 +22,20 @@ export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const urlLocation = useLocation();
 
+  const [favorites, setFavorites] = useState([]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const favoritesJSON = localStorage.getItem('favorites');
+    const parsedFavorites = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+
+    const itemsCartJSON = localStorage.getItem('itemsToBuy');
+    const itemsCart = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
+
+    setFavorites(parsedFavorites);
+    setItems(itemsCart);
+  }, [favorites, items]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -82,12 +96,13 @@ export const Header: FC = () => {
               onClick={() => handleTitleChange('Favourites')}
               to="/favourites"
             >
-              {/* favourite item count!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-              <div className="absolute text-white right-[14px] top-[15px]">
-                <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
-                  0
-                </span>
-              </div>
+              {!!favorites.length && (
+                <div className="absolute text-white right-[14px] top-[15px]">
+                  <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
+                    {favorites.length}
+                  </span>
+                </div>
+              )}
               <svg
                 width="16"
                 height="16"
@@ -110,12 +125,13 @@ export const Header: FC = () => {
               onClick={() => handleTitleChange('Cart')}
               className={favoriteNCartStyles}
             >
-              {/* cart item count!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-              <div className="absolute text-white right-[14px] top-[15px]">
-                <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
-                  12
-                </span>
-              </div>
+              {!!items.length && (
+                <div className="absolute text-white right-[14px] top-[15px]">
+                  <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
+                    {items.length}
+                  </span>
+                </div>
+              )}
               <svg
                 width="16"
                 height="16"
