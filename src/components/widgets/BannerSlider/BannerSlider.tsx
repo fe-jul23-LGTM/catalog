@@ -5,6 +5,8 @@ import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 import srcI from './assets/Banner.png';
 import srcI2 from './assets/SmallBanner.png';
+import src3 from '../../../assets/icons/arrow-right.svg';
+import src4 from '../../../assets/icons/arrow-left.svg';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -49,7 +51,7 @@ export const BannerSlider: FC = () => {
                 className={buttonStylesLeft}
               >
                 <img
-                  src="../src/assets/icons/arrow-left.svg"
+                  src={src4}
                   className="resp-[width/32/32]"
                 />
               </button>
@@ -72,7 +74,7 @@ export const BannerSlider: FC = () => {
                 className={buttonStylesRight}
               >
                 <img
-                  src="../src/assets/icons/arrow-right.svg"
+                  src={src3}
                   className="resp-[width/32/32]"
                 />
               </button>
