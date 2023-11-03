@@ -42,7 +42,7 @@ export const Paginator:FC<TPaginatorProps> = ({
     });
 
   const renderArray = sortedArray
-    .filter((item, id) => {
+    .filter((_, id) => {
       return (id < curPage * itemPerPage && id >= (curPage - 1) * itemPerPage);
     });
 

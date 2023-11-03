@@ -13,7 +13,7 @@ type TButtonProps = {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
-  productId: number;
+  productId?: number;
 };
 
 export const Button: FC<TButtonProps> = ({
@@ -22,7 +22,7 @@ export const Button: FC<TButtonProps> = ({
   children,
   disabled,
   className = '',
-  productId,
+  productId = 0,
 }) => {
   const [isPressed, setIsPressed] = useState(false);
   const { setItemsInCartCount } = useContext(ThemeContext);
