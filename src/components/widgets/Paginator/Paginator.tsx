@@ -3,7 +3,7 @@ import { PaginatoNav } from '../PaginatorNav';
 import { CardItem } from '../CardItem';
 import { Dropdown } from '~components/UI/Dropdown';
 import { IProduct } from '~types/Product';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 type TPaginatorProps = {
   itemArray: IProduct[];
@@ -14,7 +14,7 @@ export const Paginator:FC<TPaginatorProps> = ({
   itemArray,
   categoryTitle,
 }) => {
-  const paginatorHeaderStyles = `py-[24px] sm:py-[32px] lg:py-[56px]`;
+  const paginatorHeaderStyles = `py-[12px] sm:py-[16px] lg:py-[32px]`;
   const generalStyles = `flex flex-col items-center`;
   const cardLayoutStyles = `grid sm:grid-cols-2 sm-tablet:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-4`;
 
@@ -59,6 +59,20 @@ export const Paginator:FC<TPaginatorProps> = ({
   return (
     <div>
       <div className={paginatorHeaderStyles}>
+        <div className="flex flex-row gap-x-[8px] pt-[24px]">
+          <Link to={`/`}>
+            <button className="flex flex-row items-center gap-[4px]">
+              <img src="src/assets/icons/home.svg" alt="home button" />
+            </button>
+          </Link>
+          <div>
+            <img
+              src="src/assets/icons/arrow-right.svg"
+              alt="arrow right button"
+            />
+          </div>
+          <div className='capitalize'>{renderArray[0].category}</div>
+        </div>
         <h1 className='title-1 py-[8px]'>
           {categoryTitle}
         </h1>
