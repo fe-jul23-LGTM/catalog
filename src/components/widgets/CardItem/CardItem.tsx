@@ -2,12 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FavouriteButton } from '~components/UI/commonButtons/FavouriteButton';
-
 import { Button } from '~components/UI/button';
-import { Product } from '~types/Product';
+import { IProduct } from '~types/Product';
 
 type TPhoneCardProps = {
-  product: Product;
+  product: IProduct;
 };
 
 export const CardItem: React.FC<TPhoneCardProps> = ({ product }) => {
@@ -52,8 +51,8 @@ export const CardItem: React.FC<TPhoneCardProps> = ({ product }) => {
       </Link>
 
       <div className="flex justify-between gap-x-[8px]">
-        <Button isAdd> Add to cart </Button>
-        <FavouriteButton className='w-[60px]' />
+        <Button isAdd productId={product.id} > Add to cart </Button>
+        <FavouriteButton className='w-[60px]' productId={product.id} />
       </div>
     </div>
   );

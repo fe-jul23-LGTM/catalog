@@ -1,5 +1,7 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { IProduct } from '~types/Product';
+import products from '~public/initial_data/products.json';
 
 type TButtonProps = {
   children: ReactNode;
@@ -8,18 +10,57 @@ type TButtonProps = {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
+  productId: number;
 };
 
 export const Button: FC<TButtonProps> = ({
   isAdd,
   isSelect,
-  onClick,
   children,
   disabled,
   className = '',
+  productId,
 }) => {
-  // context
-  const isPressed = false;
+  const [isPressed, setIsPressed] = useState(false);
+
+  useEffect(() => {
+    const itemsCartJSON = localStorage.getItem('itemsToBuy');
+    const itemsCart: IProduct[] = itemsCartJSON
+      ? JSON.parse(itemsCartJSON)
+      : [];
+    const productInCart = itemsCart.find(
+      product => product.id === productId,
+    );
+
+    setIsPressed(!!productInCart);
+  }, [productId]);
+
+  const handleClickToCart = (id: number, items: IProduct[]) => {
+    setIsPressed(!isPressed);
+
+    const itemsCartJSON = localStorage.getItem('itemsToBuy');
+    const itemsCart: IProduct[] = itemsCartJSON
+      ? JSON.parse(itemsCartJSON)
+      : [];
+
+    const productInCart = itemsCart.find(product => product.id === id);
+
+    if (productInCart) {
+      const updatedItemsCart = itemsCart.filter(product => product.id !== id);
+
+      localStorage.setItem('itemsToBuy', JSON.stringify(updatedItemsCart));
+    }
+
+    if (!productInCart) {
+      const productToBuy = items.find(product => product.id === id);
+
+      if (productToBuy) {
+        itemsCart.push(productToBuy);
+
+        localStorage.setItem('itemsToBuy', JSON.stringify(itemsCart));
+      }
+    }
+  };
 
   const generalStyles = classNames({
     'button-add': isAdd,
@@ -33,7 +74,11 @@ export const Button: FC<TButtonProps> = ({
   });
 
   return (
-    <button disabled={disabled} onClick={onClick} className={`${generalStyles} ${className}`}>
+    <button
+      disabled={disabled}
+      onClick={() => handleClickToCart(productId, products)}
+      className={`${generalStyles} ${className}`}
+    >
       {children}
     </button>
   );
