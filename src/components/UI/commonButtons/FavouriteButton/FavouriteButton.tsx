@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { IProduct } from '~types/Product';
 import products from '~public/initial_data/products.json';
+import { ThemeContext } from '~context/Theme';
 
 type TFavouriteButtonProps = {
   selected?: boolean;
@@ -17,6 +18,7 @@ export const FavouriteButton: FC<TFavouriteButtonProps> = ({
   productId,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const { setFavoriteCount } = useContext(ThemeContext);
   const generalStyles = classNames(
     className,
     'w-[40px] h-[40px] flex items-center justify-center border transition-[border] duration-300',
@@ -55,6 +57,7 @@ export const FavouriteButton: FC<TFavouriteButtonProps> = ({
       );
 
       localStorage.setItem('favorites', JSON.stringify(updatedFavourites));
+      setFavoriteCount(updatedFavourites.length);
     }
 
     if (!productInFavourites) {
@@ -64,6 +67,7 @@ export const FavouriteButton: FC<TFavouriteButtonProps> = ({
         favorites.push(productToAdd);
 
         localStorage.setItem('favorites', JSON.stringify(favorites));
+        setFavoriteCount(favorites.length);
       }
     }
   };

@@ -11,12 +11,20 @@ interface IThemeContext {
   theme: string;
   setTheme: (prev: string) => void;
   toggleTheme: () => void;
+  favoriteCount: number;
+  setFavoriteCount: (count: number) => void;
+  itemsInCartCount: number;
+  setItemsInCartCount: (count: number) => void;
 }
 
 export const ThemeContext = createContext<IThemeContext>({
   theme: LIGHT_THEME,
   setTheme: () => {},
   toggleTheme: () => {},
+  favoriteCount: 0,
+  setFavoriteCount: () => {},
+  itemsInCartCount: 0,
+  setItemsInCartCount: () => {},
 });
 
 const getTheme = () => {
@@ -33,6 +41,8 @@ const getTheme = () => {
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(getTheme);
+  const [favoriteCount, setFavoriteCount] = useState(0);
+  const [itemsInCartCount, setItemsInCartCount] = useState(0);
 
   function toggleTheme() {
     if (theme === DARK_THEME) {
@@ -60,6 +70,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         theme,
         setTheme,
         toggleTheme,
+        favoriteCount,
+        setFavoriteCount,
+        itemsInCartCount,
+        setItemsInCartCount,
       }}
     >
       {children}

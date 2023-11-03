@@ -5,6 +5,7 @@ import { Button } from '~components/UI/button';
 import { ColorRadio } from '~components/UI/commonButtons/ColorRadio';
 import { FavouriteButton } from '~components/UI/commonButtons/FavouriteButton';
 import { IPhoneDetailed } from '~types/IPhoneDetailed';
+import products from '~public/initial_data/products.json';
 
 type TPhoneOptionsPickerProps = { phone: IPhoneDetailed };
 
@@ -24,6 +25,8 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({ phone }) => {
 
     return tempId.join('-');
   };
+
+  const productNeeded = products.find(({ itemId }) => itemId === phone.id);
 
   return (
     <>
@@ -84,8 +87,11 @@ export const PhoneOptionsPicker: FC<TPhoneOptionsPickerProps> = ({ phone }) => {
           </div>
         </div>
         <div className="flex flex-row items-center resp-[gap-x/8/8] resp-[GB/32/32]">
-          <Button isAdd> Add to cart </Button>
-          <FavouriteButton />
+          <Button isAdd productId={productNeeded?.id || 0}>
+            {' '}
+            Add to cart{' '}
+          </Button>
+          <FavouriteButton productId={productNeeded?.id || 0} />
         </div>
         <div className=" border-b-[1px] border-elements resp-[my/8/8]"></div>
         <div className="flex justify-between font-normal resp-[font/12/12] resp-[my/8/8]">
