@@ -12,7 +12,7 @@ type TPhoneCardProps = {
 export const CardItem: React.FC<TPhoneCardProps> = ({ product }) => {
   return (
     <div className="resp-[px/32/32] resp-[py/32/32] resp-[w-max/272/288] bg-[white] dark:bg-dark-surface-1 border-[1px] border-elements dark:border-dark-surface-2 cursor-pointer hover:shadow-md transition-shadow duration-300">
-      <Link to={`/phones/${product.id}`}>
+      <Link to={`/phones/${product.itemId}`}>
         <div>
           <img
             src={product.image}
