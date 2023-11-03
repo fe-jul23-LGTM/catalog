@@ -1,32 +1,31 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
-import React, { FC, useState } from 'react';
-import { IPhone } from '~types/IPhone';
+import React, { FC } from 'react';
 import { PhoneOptionsPicker } from './Description/PhoneOptionsPicker';
 import { Description } from './Description/Description';
 import { TechDescription } from './Description/TechDescription';
 import { PhotoSwipe } from './Description/PhotoSwipe';
-import { images } from './assets/Images';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import phones from '../../../../data/initial_data/phones.json';
+import { IPhoneDetailed } from '~types/IPhoneDetailed';
 
-type TPhonesProps = {
-  phone: IPhone;
-};
+type TPhonesProps = object;
 
-export const Phones: FC<TPhonesProps> = ({ phone }) => {
-  const [selectedCapacity, setSelectedCapacity] = useState(
-    `${phone.capacity} GB`,
-  );
-  const [selectedColor, setSelectedColor] = useState('Cream');
-
-  const handleFavouriteClick = (capacity: string) => {
-    setSelectedCapacity(capacity);
-  };
-
-  const handleColorChange = (color: string) => {
-    setSelectedColor(color);
-  };
-
+export const PhoneInfo: FC<TPhonesProps> = () => {
   const navigate = useNavigate();
+  const { phoneId } = useParams();
+
+  const phone: IPhoneDetailed = phones.find(product => product.id === phoneId);
+
+  if (!phone) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(phone);
+
+  // const [selectedCapacity, setSelectedCapacity] = useState(
+  //   `${phone?.capacity} GB`,
+  // );
 
   const handleGoBack = () => {
     navigate(-1);
@@ -59,24 +58,18 @@ export const Phones: FC<TPhonesProps> = ({ phone }) => {
           className="flex flex-row items-center gap-[4px]"
           onClick={handleGoBack}
         >
-          <img src="src/assets/icons/arrow-back.svg" alt="back button" />
+          <img src="src/assets/icons/arrow-left.svg" alt="back button" />
           Back
         </button>
       </div>
       <h2 className="title-2 resp-[font/32/22] flex items-center justify-start resp-[pb/40/32]">
-        {`${phone.name} ` + ` ${selectedCapacity}` + ` ${selectedColor}`}
+        {phone?.name}
       </h2>
       <div className="resp-[grid-col/0,3/1] grid-cols-1 sm:grid-cols-2 gap-x-[30px] gap-y-[65px]">
-        <PhotoSwipe images={images} />
-        <PhoneOptionsPicker
-          phone={phone}
-          selectedCapacity={selectedCapacity}
-          handleFavouriteClick={handleFavouriteClick}
-          selectedColor={selectedCapacity}
-          handleColorChange={handleColorChange}
-        />
-        <Description />
-        <TechDescription phone={phone} selectedCapacity={selectedCapacity} />
+        <PhotoSwipe images={phone.images} />
+        <PhoneOptionsPicker phone={phone} />
+        <Description description={phone.description} />
+        <TechDescription phone={phone} />
       </div>
     </div>
   );
