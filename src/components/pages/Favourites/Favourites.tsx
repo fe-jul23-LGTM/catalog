@@ -1,27 +1,44 @@
 /* eslint-disable max-len */
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CardItem } from '~components/widgets/CardItem';
+import { ThemeContext } from '~context/Theme';
 import { IProduct } from '~types/Product';
 
 export const Favourites: FC = () => {
-  const [favorites, setFavorites] = useState<IProduct[]>([]);
+  const { setFavoriteCount } = useContext(ThemeContext);
+
+  const favoritesJSON = localStorage.getItem('favorites');
+  const parsedFavorites: IProduct[] = favoritesJSON
+    ? JSON.parse(favoritesJSON)
+    : [];
 
   useEffect(() => {
-    const favoritesJSON = localStorage.getItem('favorites');
-    const parsedFavorites: IProduct[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
-
-    setFavorites(parsedFavorites);
-  }, [favorites]);
+    setFavoriteCount(parsedFavorites.length);
+  }, []);
 
   return (
     <div className="resp-[py/40/40]">
-      {favorites.length ? (
+      {parsedFavorites.length ? (
         <>
+          <div className="flex flex-row gap-x-[8px] pt-[24px] items-center">
+            <Link to={`/`}>
+              <button className="flex flex-row items-center gap-[4px]">
+                <img src="src/assets/icons/home.svg" alt="home button" />
+              </button>
+            </Link>
+            <div>
+              <img
+                src="src/assets/icons/arrow-right.svg"
+                alt="arrow right button"
+              />
+            </div>
+            <div>Favourites</div>
+          </div>
           <h1 className="title-1 resp-[mb/8/8]">Favourites</h1>
-          <p className="resp-[mb/40/40]">{favorites.length} items</p>
+          <p className="resp-[mb/40/40]">{parsedFavorites.length} items</p>
           <section className="grid sm:grid-cols-2 sm-tablet:grid-cols-3 lg:grid-cols-4 resp-[gap-y/40/40] resp-[gap-x/16/16] justify-center">
-            {favorites.map(product => (
+            {parsedFavorites.map(product => (
               <div key={product.id} className="w-full">
                 <CardItem product={product} />
               </div>

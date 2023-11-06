@@ -1,16 +1,27 @@
 /* eslint-disable max-len */
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { CartItem } from '../CartItem';
 import { Button } from '~components/UI/button';
 import '~assets/icons/arrow-down.svg';
 import { Link } from 'react-router-dom';
 import { IProduct } from '~types/Product';
+import { ThemeContext } from '~context/Theme';
 
 export const CartCheckoutSection: FC = () => {
   const [isPressed, setIsPressed] = useState(false);
+  const { setItemsInCartCount } = useContext(ThemeContext);
 
   const itemsCartJSON = localStorage.getItem('itemsToBuy');
   const itemsCart: IProduct[] = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
+
+  useEffect(() => {
+    setProductsList(itemsCart.map(product => ({
+      ...product,
+      count: 1,
+    })));
+
+    setItemsInCartCount(itemsCart.length);
+  }, []);
 
   const [productsList, setProductsList] = useState(
     itemsCart.map(product => ({
@@ -18,21 +29,21 @@ export const CartCheckoutSection: FC = () => {
       count: 1,
     })),
   );
+
   const deleteFromCart = (id: number) => {
     setIsPressed(!isPressed);
 
-    const productInCart = itemsCart.find(product => product.id === id);
+    const productInCart = productsList.find(product => product.id === id);
 
     if (productInCart) {
-      const updatedItemsCart = itemsCart.filter(product => product.id !== id);
+      const updatedItemsCart = productsList.filter(product => product.id !== id);
 
       localStorage.setItem('itemsToBuy', JSON.stringify(updatedItemsCart));
-
-      if (window.location.hash === '#/cart') {
-        window.location.reload();
-      }
+      setProductsList(updatedItemsCart);
+      setItemsInCartCount(updatedItemsCart.length);
     }
   };
+
   const totalPrice = productsList.reduce((totalSum, elem) => {
     return totalSum + elem.price * elem.count;
   }, 0);
@@ -58,6 +69,17 @@ export const CartCheckoutSection: FC = () => {
     <section className="resp-[py/40/40]">
       {totalItems ? (
         <>
+          <div className="flex flex-row gap-x-[8px] pt-[24px] items-center">
+            <Link to={`/`}>
+              <button className="flex flex-row items-center gap-[4px]">
+                <img
+                  src="src/assets/icons/arrow-left-black.svg"
+                  alt="arrow left button"
+                />
+              </button>
+            </Link>
+            <div>Back</div>
+          </div>
           <h1 className="title-1 resp-[mb/32/32]">Cart</h1>
           <div
             className="flex flex-col lg:flex-row lg:items-start
@@ -95,7 +117,7 @@ export const CartCheckoutSection: FC = () => {
               <Button
                 productId={0}
                 isAdd
-                className="resp-[height/48/48] resp-[width/320/320]"
+                className="resp-[height/48/48] resp-[width/320/320] m-auto"
               >
                 Checkout
               </Button>
