@@ -1,13 +1,16 @@
 /* eslint-disable max-len */
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { CartItem } from '../CartItem';
-import { Button } from '~components/UI/button';
 import '~assets/icons/arrow-down.svg';
 import { Link } from 'react-router-dom';
 import { IProduct } from '~types/Product';
+import { CheckoutModal } from './CheckoutModal';
+import { ThemeContext } from '~context/Theme';
 
 export const CartCheckoutSection: FC = () => {
   const [isPressed, setIsPressed] = useState(false);
+  const [isCheckoutClicked, setIsCheckoutClicked] = useState(false);
+  const { setItemsInCartCount } = useContext(ThemeContext);
 
   const itemsCartJSON = localStorage.getItem('itemsToBuy');
   const itemsCart: IProduct[] = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
@@ -54,6 +57,16 @@ export const CartCheckoutSection: FC = () => {
       }));
   };
 
+  const handeClickCheckout = () => {
+    localStorage.setItem(
+      'itemsToBuy',
+      JSON.stringify([]),
+    );
+    setItemsInCartCount(0);
+    setProductsList([]);
+    setIsCheckoutClicked(true);
+  };
+
   return (
     <section className="resp-[py/40/40]">
       {totalItems ? (
@@ -92,13 +105,12 @@ export const CartCheckoutSection: FC = () => {
                 }`}</p>
               </div>
 
-              <Button
-                productId={0}
-                isAdd
-                className="resp-[height/48/48] resp-[width/320/320]"
+              <button
+                className="button-add resp-[height/48/48] resp-[width/320/320]"
+                onClick={handeClickCheckout}
               >
                 Checkout
-              </Button>
+              </button>
             </form>
           </div>
         </>
@@ -114,6 +126,13 @@ export const CartCheckoutSection: FC = () => {
             Go to the Home page
           </Link>
         </div>
+      )}
+
+      {isCheckoutClicked && (
+        <CheckoutModal
+          isCheckoutClicked={isCheckoutClicked}
+          setIsCheckoutClicked={setIsCheckoutClicked}
+        />
       )}
     </section>
   );
