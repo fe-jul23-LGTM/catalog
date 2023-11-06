@@ -4,27 +4,30 @@ import phones from './assets/phones.jpg';
 import tablets from './assets/tablets.jpg';
 import accessories from './assets/accessories.jpg';
 import { Link } from 'react-router-dom';
+import phonesInfo from '~public/initial_data/phones.json';
+import tabletsInfo from '~public/initial_data/tablets.json';
+import accessoriesInfo from '~public/initial_data/accessories.json';
 
 const categories = [
   {
     title: 'Mobile phones',
     link: '/phones',
     image: phones,
-    itemsCount: '71',
+    itemsCount: `${phonesInfo.length}`,
   },
 
   {
     title: 'Tablets',
     link: '/tablets',
     image: tablets,
-    itemsCount: '24',
+    itemsCount: `${tabletsInfo.length}`,
   },
 
   {
     title: 'Accessories',
     link: '/accessories',
     image: accessories,
-    itemsCount: '100',
+    itemsCount: `${accessoriesInfo.length}`,
   },
 ];
 
