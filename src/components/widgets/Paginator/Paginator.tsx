@@ -7,7 +7,6 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 type TPaginatorProps = {
   itemArray: IProduct[];
-  categoryTitle: string;
 };
 
 export const Paginator:FC<TPaginatorProps> = ({
