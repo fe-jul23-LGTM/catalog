@@ -9,13 +9,13 @@ type TFavouriteButtonProps = {
   selected?: boolean;
   onClick?: () => void;
   className?: string;
-  productId: number;
+  productId?: number;
 };
 
 export const FavouriteButton: FC<TFavouriteButtonProps> = ({
   selected = false,
   className = '',
-  productId,
+  productId = 0,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { setFavoriteCount } = useContext(ThemeContext);

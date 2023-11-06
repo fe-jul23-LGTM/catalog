@@ -80,7 +80,7 @@ export const Button: FC<TButtonProps> = ({
   return (
     <button
       disabled={disabled}
-      onClick={() => handleClickToCart(productId, products)}
+      onClick={() => handleClickToCart(productId ?? 0, products)}
       className={`${generalStyles} ${className}`}
     >
       {children}
