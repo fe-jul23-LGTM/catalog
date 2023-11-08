@@ -6,11 +6,15 @@ import { Link } from 'react-router-dom';
 import { IProduct } from '~types/Product';
 import { CheckoutModal } from './CheckoutModal';
 import { ThemeContext } from '~context/Theme';
+import arrowLeftBlack from '~assets/icons/arrow-left-black.svg';
+import arrowLeftWhite from '~assets/icons/arrow-left-white.svg';
 
 export const CartCheckoutSection: FC = () => {
   const [isPressed, setIsPressed] = useState(false);
   const [isCheckoutClicked, setIsCheckoutClicked] = useState(false);
   const { setItemsInCartCount } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+  const isLightTheme = theme === 'light-theme';
 
   const itemsCartJSON = localStorage.getItem('itemsToBuy');
   const itemsCart: IProduct[] = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
@@ -84,12 +88,12 @@ export const CartCheckoutSection: FC = () => {
             <Link to={`/`}>
               <button className="flex flex-row items-center gap-[4px]">
                 <img
-                  src="src/assets/icons/arrow-left-black.svg"
+                  src={isLightTheme ? arrowLeftBlack : arrowLeftWhite}
                   alt="arrow left button"
                 />
               </button>
             </Link>
-            <div>Back</div>
+            <div className="dark:text-dark-white">Back</div>
           </div>
           <h1 className="title-1 resp-[mb/32/32]">Cart</h1>
           <div

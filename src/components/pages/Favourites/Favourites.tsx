@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 import { CardItem } from '~components/widgets/CardItem';
 import { ThemeContext } from '~context/Theme';
 import { IProduct } from '~types/Product';
+import arrowRightLight from '~assets/icons/arrow-right.svg';
+import arrowRightDark from '~assets/icons/arrow-right-dark.svg';
+import homeImage from '~assets/icons/home.svg';
+import homeImageDark from '~assets/icons/home-dark.svg';
 
 export const Favourites: FC = () => {
   const { setFavoriteCount } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+  const isLightTheme = theme === 'light-theme';
 
   const favoritesJSON = localStorage.getItem('favorites');
   const parsedFavorites: IProduct[] = favoritesJSON
@@ -24,16 +30,16 @@ export const Favourites: FC = () => {
           <div className="flex flex-row gap-x-[8px] pt-[24px] items-center">
             <Link to={`/`}>
               <button className="flex flex-row items-center gap-[4px]">
-                <img src="src/assets/icons/home.svg" alt="home button" />
+                <img src={isLightTheme ? homeImage : homeImageDark} alt="home button" />
               </button>
             </Link>
             <div>
               <img
-                src="src/assets/icons/arrow-right.svg"
+                src={isLightTheme ? arrowRightLight : arrowRightDark}
                 alt="arrow right button"
               />
             </div>
-            <div>Favourites</div>
+            <div className='dark:text-dark-secondary'>Favourites</div>
           </div>
           <h1 className="title-1 resp-[mb/8/8]">Favourites</h1>
           <p className="resp-[mb/40/40]">{parsedFavorites.length} items</p>
