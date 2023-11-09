@@ -9,6 +9,6 @@ export const Tablets:FC<TTabletsProps> = () => {
     .filter((item) => item.category === 'tablets');
 
   return (
-    <Paginator itemArrayy={filteredArray} categoryTitle='Tablets'/>
+    <Paginator itemArray={filteredArray} categoryTitle='Tablets'/>
   );
 };
