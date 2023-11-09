@@ -1,12 +1,14 @@
 import { FC, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import { PaginatoNav } from '../PaginatorNav';
 import { CardItem } from '../CardItem';
 import { Dropdown } from '~components/UI/Dropdown';
 import { IProduct } from '~types/Product';
-import { useSearchParams } from 'react-router-dom';
 
 type TPaginatorProps = {
   itemArray: IProduct[];
+  categoryTitle: string;
 };
 
 export const Paginator:FC<TPaginatorProps> = ({
