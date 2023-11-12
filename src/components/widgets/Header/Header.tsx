@@ -15,6 +15,7 @@ import { ThemeContext } from '~context/Theme';
 import { handleTitleChange } from '~helpers/functions';
 
 import style from './Header.module.css';
+import { HeaderCounter } from '~components/UI/HeaderCounter';
 
 export const Header: FC = () => {
   const { theme, toggleTheme, favoriteCount, setFavoriteCount, itemsInCartCount, setItemsInCartCount } = useContext(ThemeContext);
@@ -94,11 +95,7 @@ export const Header: FC = () => {
               to="/favourites"
             >
               {!!favoriteCount && (
-                <div className="absolute text-white right-[14px] top-[15px]">
-                  <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
-                    {favoriteCount}
-                  </span>
-                </div>
+                <HeaderCounter count={favoriteCount} />
               )}
               <svg
                 width="16"
@@ -123,11 +120,7 @@ export const Header: FC = () => {
               className={favoriteNCartStyles}
             >
               {!!itemsInCartCount && (
-                <div className="absolute text-white right-[14px] top-[15px]">
-                  <span className="bg-red flex items-center justify-center rounded-full w-[5px] h-[5px] p-[8px] border text-[9px] border-white font-bold">
-                    {itemsInCartCount}
-                  </span>
-                </div>
+                <HeaderCounter count={itemsInCartCount}/>
               )}
               <svg
                 width="16"
