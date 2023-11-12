@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { FC } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -9,6 +9,8 @@ import { getStyleLink } from './helper';
 
 import styles from './BurgerMenu.module.css';
 import { handleTitleChange } from '~helpers/functions';
+import { ThemeContext } from '~context/Theme';
+import { HeaderCounter } from '~components/UI/HeaderCounter';
 
 type TBurgerMenuProps = {
   isMenuOpen: boolean;
@@ -23,6 +25,24 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
     },
   );
 
+  const {
+    favoriteCount,
+    setFavoriteCount,
+    itemsInCartCount,
+    setItemsInCartCount,
+  } = useContext(ThemeContext);
+
+  useEffect(() => {
+    const favoritesJSON = localStorage.getItem('favorites');
+    const parsedFavorites = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+
+    const itemsCartJSON = localStorage.getItem('itemsToBuy');
+    const itemsCart = itemsCartJSON ? JSON.parse(itemsCartJSON) : [];
+
+    setFavoriteCount(parsedFavorites.length);
+    setItemsInCartCount(itemsCart.length);
+  }, []);
+
   return (
     <aside className={asideStyle}>
       <NavBar onTitleChange={handleTitleChange} isBurger={true} />
@@ -35,6 +55,7 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
             getStyleLink(activeLink.isActive, 'left-[25%]', '-translate-x-2/4')
           }
         >
+          {!!favoriteCount && <HeaderCounter count={favoriteCount} />}
           <svg
             width="16"
             height="16"
@@ -57,6 +78,7 @@ export const BurgerMenu: FC<TBurgerMenuProps> = ({ isMenuOpen }) => {
           }
           onClick={() => handleTitleChange('cart')}
         >
+          {!!itemsInCartCount && <HeaderCounter count={itemsInCartCount} />}
           <svg
             width="16"
             height="16"
