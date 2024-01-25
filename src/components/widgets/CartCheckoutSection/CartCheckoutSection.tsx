@@ -130,7 +130,7 @@ export const CartCheckoutSection: FC = () => {
               </div>
 
               <button
-                className="button-add resp-[height/48/48] resp-[width/320/320]"
+                className="button-add resp-[height/48/48] lg:resp-[width/320/320]"
                 onClick={handeClickCheckout}
               >
                 Checkout
